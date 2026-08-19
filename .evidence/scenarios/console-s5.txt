@@ -1,0 +1,24 @@
+[harness] tearing the stack down (including volumes)
+[harness] starting with two nodes
+[harness] load on, then adding dbnode3 mid-run
+[harness] client run 'during-join': -addr http://loadbalancer:8080 -duration 40s -concurrency 8 -keyspace 2000 -read 0.5
+elapsed: 40.019274901s
+throughput: 1117.9 ops/s (total=44738)
+latency: avg=7.143044ms min=404.519µs max=107.105233ms
+get: ok=20431 miss=1905 err=0
+set: ok=22402 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+--- non-2xx only ---
+status codes returned by the load balancer on /kv/, per second
+07:14:10 502 1
+=== Set/Get/Delete through the load balancer ===
+$ curl -X PUT http://localhost:8080/kv/smoke-key -d 'hello'
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key
+{"key":"smoke-key","value":"aGVsbG8=","version":21473}
+
+$ curl -X DELETE http://localhost:8080/kv/smoke-key
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key   (expect 404)
+HTTP/1.1 404 Not Found

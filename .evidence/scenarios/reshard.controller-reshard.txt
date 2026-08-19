@@ -1,0 +1,141 @@
+2026/08/19 07:17:04 [reshard] prepared: 16 -> 32 partitions, 32 ranges to move
+2026/08/19 07:17:04 [http] POST /reshard 200 142.218µs
+2026/08/19 07:17:04 [reshard] intermediate state active: both formulas are live
+2026/08/19 07:17:04 [reshard] node 1 announced range 0 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 111.468µs
+2026/08/19 07:17:04 [reshard] range 0 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 1 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 116.728µs
+2026/08/19 07:17:04 [reshard] range 1 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 2 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 76.95µs
+2026/08/19 07:17:04 [reshard] range 2 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 3 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 44.968µs
+2026/08/19 07:17:04 [reshard] range 3 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 4 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 71.559µs
+2026/08/19 07:17:04 [reshard] range 4 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 5 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 74.846µs
+2026/08/19 07:17:04 [reshard] range 5 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 6 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 84.895µs
+2026/08/19 07:17:04 [reshard] range 6 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 7 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 54.537µs
+2026/08/19 07:17:04 [reshard] range 7 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 8 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 87.241µs
+2026/08/19 07:17:04 [reshard] range 8 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 9 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 65.438µs
+2026/08/19 07:17:04 [reshard] range 9 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 10 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 87.571µs
+2026/08/19 07:17:04 [reshard] range 10 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 11 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 80.808µs
+2026/08/19 07:17:04 [reshard] range 11 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 12 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 40.609µs
+2026/08/19 07:17:04 [reshard] range 12 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 13 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 69.135µs
+2026/08/19 07:17:04 [reshard] range 13 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 14 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 58.074µs
+2026/08/19 07:17:04 [reshard] range 14 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 15 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 126.857µs
+2026/08/19 07:17:04 [reshard] range 15 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 16 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 83.593µs
+2026/08/19 07:17:04 [reshard] range 16 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 17 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 130.114µs
+2026/08/19 07:17:04 [reshard] range 17 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 18 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 80.708µs
+2026/08/19 07:17:04 [reshard] range 18 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 19 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 102.78µs
+2026/08/19 07:17:04 [reshard] range 19 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 20 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 87.431µs
+2026/08/19 07:17:04 [reshard] range 20 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 21 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 88.383µs
+2026/08/19 07:17:04 [reshard] range 21 -> node 1: done
+2026/08/19 07:17:04 [http] GET /reshard/status 200 638.216µs
+2026/08/19 07:17:04 [reshard] node 2 announced range 22 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 130.895µs
+2026/08/19 07:17:04 [reshard] range 22 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 23 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 55.539µs
+2026/08/19 07:17:04 [reshard] range 23 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 24 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 45.94µs
+2026/08/19 07:17:04 [reshard] range 24 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 25 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 46.34µs
+2026/08/19 07:17:04 [reshard] range 25 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 26 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 110.937µs
+2026/08/19 07:17:04 [reshard] range 26 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 27 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 83.964µs
+2026/08/19 07:17:04 [reshard] range 27 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 28 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 48.254µs
+2026/08/19 07:17:04 [reshard] range 28 -> node 2: done
+2026/08/19 07:17:04 [reshard] node 3 announced range 29 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 41.271µs
+2026/08/19 07:17:04 [reshard] range 29 -> node 3: done
+2026/08/19 07:17:04 [reshard] node 1 announced range 30 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 59.135µs
+2026/08/19 07:17:04 [reshard] range 30 -> node 1: done
+2026/08/19 07:17:04 [reshard] node 2 announced range 31 ready
+2026/08/19 07:17:04 [http] POST /reshard/range-ready 200 46.19µs
+2026/08/19 07:17:04 [reshard] range 31 -> node 2: done
+2026/08/19 07:17:04 [reshard] all ranges transferred; collapsing to the new formula
+2026/08/19 07:17:04 [reshard] complete: cluster is now using 32 partitions
+2026/08/19 07:17:05 [http] GET /reshard/status 200 137.951µs
+2026/08/19 07:17:07 [http] GET /reshard/status 200 311.59µs
+2026/08/19 07:17:08 [http] GET /reshard/status 200 96.89µs
+2026/08/19 07:17:09 [http] GET /reshard/status 200 160.595µs
+2026/08/19 07:17:11 [http] GET /reshard/status 200 216.524µs
+2026/08/19 07:17:12 [http] GET /reshard/status 200 80.317µs
+2026/08/19 07:17:14 [http] GET /reshard/status 200 108.312µs
+2026/08/19 07:17:15 [http] GET /reshard/status 200 97.371µs
+2026/08/19 07:17:16 [http] GET /reshard/status 200 126.618µs
+2026/08/19 07:17:18 [http] GET /reshard/status 200 155.074µs
+2026/08/19 07:17:19 [http] GET /reshard/status 200 133.461µs
+2026/08/19 07:17:20 [http] GET /reshard/status 200 105.486µs
+2026/08/19 07:17:22 [http] GET /reshard/status 200 120.691µs
+2026/08/19 07:17:23 [http] GET /reshard/status 200 160.701µs
+2026/08/19 07:17:24 [http] GET /reshard/status 200 92.886µs
+2026/08/19 07:17:26 [http] GET /reshard/status 200 168.646µs
+2026/08/19 07:17:27 [http] GET /reshard/status 200 92.053µs
+2026/08/19 07:17:28 [http] GET /reshard/status 200 113.757µs
+2026/08/19 07:17:30 [http] GET /reshard/status 200 141.13µs
+2026/08/19 07:17:31 [http] GET /reshard/status 200 182.16µs
+2026/08/19 07:17:33 [http] GET /reshard/status 200 126.57µs
+2026/08/19 07:17:34 [http] GET /reshard/status 200 117.373µs
+2026/08/19 07:17:35 [http] GET /reshard/status 200 86.401µs
+2026/08/19 07:17:37 [http] GET /reshard/status 200 161.59µs
+2026/08/19 07:17:38 [http] GET /reshard/status 200 99.886µs
+2026/08/19 07:17:39 [http] GET /reshard/status 200 82.883µs
+2026/08/19 07:17:40 [http] GET /reshard/status 200 92.462µs
+2026/08/19 07:17:42 [http] GET /reshard/status 200 87.101µs
+2026/08/19 07:17:43 [http] GET /reshard/status 200 92.361µs
+2026/08/19 07:17:44 [http] GET /reshard/status 200 73.484µs
+2026/08/19 07:17:45 [http] GET /reshard/status 200 64.947µs
+2026/08/19 07:17:47 [http] GET /reshard/status 200 108.422µs
+2026/08/19 07:17:48 [http] GET /reshard/status 200 113.602µs
+2026/08/19 07:17:49 [http] GET /reshard/status 200 75.457µs
+2026/08/19 07:17:50 [http] GET /reshard/status 200 86.248µs
+2026/08/19 07:17:52 [http] GET /reshard/status 200 128.071µs
+2026/08/19 07:17:53 [http] GET /reshard/status 200 106.338µs
+2026/08/19 07:17:54 [http] GET /reshard/status 200 87.461µs
+2026/08/19 07:17:55 [http] GET /reshard/status 200 113.632µs

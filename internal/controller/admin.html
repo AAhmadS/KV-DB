@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        h1 {
+            color: #00d4ff;
+            font-size: 24px;
+        }
+        .status-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .status-healthy { background: #00c853; color: #000; }
+        .status-degraded { background: #ff9800; color: #000; }
+        .status-unhealthy { background: #f44336; color: #fff; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #0f3460;
+        }
+        .card h2 {
+            font-size: 16px;
+            color: #00d4ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card h2::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #00d4ff;
+            border-radius: 50%;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #0f3460;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #0f3460;
+        }
+        th {
+            color: #888;
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        tr:hover {
+            background: #0f3460;
+        }
+
+        .node-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .node-healthy { background: rgba(0,200,83,0.2); color: #00c853; }
+        .node-suspect { background: rgba(255,152,0,0.2); color: #ff9800; }
+        .node-dead { background: rgba(244,67,54,0.2); color: #f44336; }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            background: #0f3460;
+            border: 1px solid #1a1a2e;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+        button {
+            padding: 10px 20px;
+            background: #00d4ff;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #00b8e6;
+        }
+        button:disabled {
+            background: #555;
+            color: #888;
+            cursor: not-allowed;
+        }
+        button.danger {
+            background: #f44336;
+            color: #fff;
+        }
+        button.danger:hover {
+            background: #d32f2f;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .alert-success { background: rgba(0,200,83,0.2); color: #00c853; border: 1px solid #00c853; }
+        .alert-error { background: rgba(244,67,54,0.2); color: #f44336; border: 1px solid #f44336; }
+        .alert-info { background: rgba(0,212,255,0.2); color: #00d4ff; border: 1px solid #00d4ff; }
+
+        .reshard-status {
+            padding: 15px;
+            background: #0f3460;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .reshard-status .state {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .reshard-status .state.stable { color: #00c853; }
+        .reshard-status .state.migrating { color: #ff9800; }
+        .reshard-status .state.preparing { color: #00d4ff; }
+
+        .progress-bar {
+            height: 8px;
+            background: #1a1a2e;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            background: #00d4ff;
+            transition: width 0.3s;
+        }
+
+        .partition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .partition-box {
+            padding: 10px;
+            background: #0f3460;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .partition-box:hover {
+            background: #1a4080;
+        }
+        .partition-box .id {
+            font-weight: bold;
+            color: #00d4ff;
+        }
+        .partition-box .master {
+            color: #888;
+            font-size: 10px;
+            margin-top: 4px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 25px;
+            width: 400px;
+            max-width: 90%;
+            border: 1px solid #0f3460;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 {
+            color: #00d4ff;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+        }
+        .toast {
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .refresh-btn {
+            background: transparent;
+            border: 1px solid #00d4ff;
+            color: #00d4ff;
+            padding: 8px 16px;
+        }
+        .refresh-btn:hover {
+            background: rgba(0,212,255,0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #555;
+            font-size: 12px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>KV-DB Admin Panel</h1>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <span id="cluster-status" class="status-badge status-healthy">Healthy</span>
+                <button class="refresh-btn" onclick="refreshAll()">Refresh</button>
+            </div>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-nodes">-</div>
+                <div class="stat-label">Total Nodes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-healthy">-</div>
+                <div class="stat-label">Healthy Nodes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-partitions">-</div>
+                <div class="stat-label">Partitions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-version">-</div>
+                <div class="stat-label">Cluster Version</div>
+            </div>
+        </div>
+
+        <div id="alerts"></div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Nodes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nodes-table">
+                        <tr><td colspan="4" style="text-align:center;color:#888;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2>Reshard Operations</h2>
+                <div class="reshard-status" id="reshard-status">
+                    <div class="state stable" id="reshard-state">STABLE</div>
+                    <div id="reshard-details"></div>
+                    <div class="progress-bar" id="reshard-progress" style="display:none;">
+                        <div class="fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>New Partition Count</label>
+                    <input type="number" id="new-partitions" min="1" max="256" placeholder="e.g., 32">
+                </div>
+                <div class="actions">
+                    <button onclick="startReshard()" id="reshard-btn">Start Reshard</button>
+                    <button class="danger" onclick="cancelReshard()" id="cancel-reshard-btn" disabled>Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Partition Topology</h2>
+            <div class="partition-grid" id="partition-grid">
+                <div style="text-align:center;color:#888;grid-column:1/-1;">Loading...</div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <h2>Manual Failover</h2>
+            <div class="grid" style="grid-template-columns: 1fr 1fr 1fr auto; gap: 15px; align-items: end;">
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>Partition ID</label>
+                    <input type="number" id="failover-partition" min="0" placeholder="e.g., 0">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>New Master Node ID</label>
+                    <input type="number" id="failover-new-master" min="1" placeholder="e.g., 2">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>&nbsp;</label>
+                    <button onclick="triggerFailover()">Trigger Failover</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <h2>Move Partition</h2>
+            <div class="grid" style="grid-template-columns: 1fr 1fr 1fr auto; gap: 15px; align-items: end;">
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>Partition ID</label>
+                    <input type="number" id="move-partition" min="0" placeholder="e.g., 0">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>Target Node ID</label>
+                    <input type="number" id="move-target-node" min="1" placeholder="e.g., 3">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>&nbsp;</label>
+                    <button onclick="movePartition()">Move</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            KV-DB Distributed Key-Value Store &bull; Admin Panel v1.0
+        </footer>
+    </div>
+
+    <!-- Partition Detail Modal -->
+    <div class="modal" id="partition-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Partition <span id="modal-partition-id">0</span></h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modal-partition-details"></div>
+            <div class="actions" style="margin-top: 20px;">
+                <button onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script>
+        const API_BASE = '';
+        let autoRefreshInterval = null;
+
+        // Toast notifications
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast alert-${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 5000);
+        }
+
+        // API helpers
+        async function apiGet(endpoint) {
+            const response = await fetch(API_BASE + endpoint);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        }
+
+        async function apiPost(endpoint, body = null) {
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            };
+            if (body) options.body = JSON.stringify(body);
+            const response = await fetch(API_BASE + endpoint, options);
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
+            return data;
+        }
+
+        // Refresh all data
+        async function refreshAll() {
+            await Promise.all([
+                loadHealth(),
+                loadNodes(),
+                loadTopology(),
+                loadReshardStatus()
+            ]);
+        }
+
+        // Load health status
+        async function loadHealth() {
+            try {
+                const health = await apiGet('/health');
+                const statusEl = document.getElementById('cluster-status');
+                statusEl.textContent = health.status.charAt(0).toUpperCase() + health.status.slice(1);
+                statusEl.className = 'status-badge status-' + health.status;
+
+                document.getElementById('stat-nodes').textContent = health.details.total_nodes;
+                document.getElementById('stat-healthy').textContent = health.details.healthy_nodes;
+                document.getElementById('stat-version').textContent = health.details.version;
+            } catch (err) {
+                showToast('Failed to load health: ' + err.message, 'error');
+            }
+        }
+
+        // Load nodes
+        async function loadNodes() {
+            try {
+                const data = await apiGet('/nodes');
+                const nodes = data.nodes || [];
+                const tbody = document.getElementById('nodes-table');
+
+                if (nodes.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#888;">No nodes registered</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = nodes.map(node => `
+                    <tr>
+                        <td><strong>${node.id}</strong></td>
+                        <td>${node.address}:${node.port}</td>
+                        <td><span class="node-status node-${node.status.toLowerCase()}">${node.status}</span></td>
+                        <td>
+                            <button onclick="removeNode(${node.id})" class="danger" style="padding:4px 8px;font-size:12px;">Remove</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (err) {
+                showToast('Failed to load nodes: ' + err.message, 'error');
+            }
+        }
+
+        // Load topology
+        async function loadTopology() {
+            try {
+                const map = await apiGet('/map');
+                document.getElementById('stat-partitions').textContent = map.num_partitions;
+
+                const grid = document.getElementById('partition-grid');
+                const partitions = map.partitions || [];
+
+                if (partitions.length === 0) {
+                    grid.innerHTML = '<div style="text-align:center;color:#888;grid-column:1/-1;">No partitions</div>';
+                    return;
+                }
+
+                grid.innerHTML = partitions.map(p => `
+                    <div class="partition-box" onclick="showPartitionDetail(${p.id})">
+                        <div class="id">P${p.id}</div>
+                        <div class="master">M: ${p.master_id || '-'}</div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                showToast('Failed to load topology: ' + err.message, 'error');
+            }
+        }
+
+        // Load reshard status
+        async function loadReshardStatus() {
+            try {
+                const status = await apiGet('/reshard/status');
+                const stateEl = document.getElementById('reshard-state');
+                const detailsEl = document.getElementById('reshard-details');
+                const progressEl = document.getElementById('reshard-progress');
+                const reshardBtn = document.getElementById('reshard-btn');
+                const cancelBtn = document.getElementById('cancel-reshard-btn');
+
+                stateEl.textContent = status.state || 'STABLE';
+                stateEl.className = 'state ' + (status.state || 'stable').toLowerCase();
+
+                if (status.state === 'stable' || !status.state) {
+                    detailsEl.textContent = 'Cluster is stable. Ready for reshard operations.';
+                    progressEl.style.display = 'none';
+                    reshardBtn.disabled = false;
+                    cancelBtn.disabled = true;
+                } else {
+                    detailsEl.innerHTML = `
+                        Target partitions: ${status.new_num_partitions || '-'}<br>
+                        Migrations: ${status.completed_migrations || 0} / ${status.total_migrations || '-'}
+                    `;
+
+                    if (status.total_migrations > 0) {
+                        const progress = (status.completed_migrations / status.total_migrations) * 100;
+                        progressEl.style.display = 'block';
+                        progressEl.querySelector('.fill').style.width = progress + '%';
+                    }
+
+                    reshardBtn.disabled = true;
+                    cancelBtn.disabled = false;
+                }
+            } catch (err) {
+                showToast('Failed to load reshard status: ' + err.message, 'error');
+            }
+        }
+
+        // Start reshard
+        async function startReshard() {
+            const input = document.getElementById('new-partitions');
+            const count = parseInt(input.value);
+
+            if (!count || count < 1 || count > 256) {
+                showToast('Please enter a valid partition count (1-256)', 'error');
+                return;
+            }
+
+            if (!confirm(`Are you sure you want to reshard to ${count} partitions? This operation may take some time.`)) {
+                return;
+            }
+
+            try {
+                await apiPost('/reshard', { new_num_partitions: count });
+                showToast('Reshard started successfully', 'success');
+                input.value = '';
+                await refreshAll();
+
+                // Start auto-refresh during reshard
+                if (!autoRefreshInterval) {
+                    autoRefreshInterval = setInterval(loadReshardStatus, 2000);
+                }
+            } catch (err) {
+                showToast('Failed to start reshard: ' + err.message, 'error');
+            }
+        }
+
+        // Cancel reshard
+        async function cancelReshard() {
+            if (!confirm('Are you sure you want to cancel the ongoing reshard?')) {
+                return;
+            }
+
+            try {
+                await apiPost('/reshard/cancel');
+                showToast('Reshard cancelled', 'success');
+
+                if (autoRefreshInterval) {
+                    clearInterval(autoRefreshInterval);
+                    autoRefreshInterval = null;
+                }
+
+                await refreshAll();
+            } catch (err) {
+                showToast('Failed to cancel reshard: ' + err.message, 'error');
+            }
+        }
+
+        // Trigger manual failover
+        async function triggerFailover() {
+            const partitionId = parseInt(document.getElementById('failover-partition').value);
+            const newMasterId = parseInt(document.getElementById('failover-new-master').value);
+
+            if (isNaN(partitionId) || partitionId < 0) {
+                showToast('Please enter a valid partition ID', 'error');
+                return;
+            }
+
+            if (isNaN(newMasterId) || newMasterId < 1) {
+                showToast('Please enter a valid new master node ID', 'error');
+                return;
+            }
+
+            if (!confirm(`Are you sure you want to failover partition ${partitionId} to node ${newMasterId}?`)) {
+                return;
+            }
+
+            try {
+                await apiPost(`/failover?partition_id=${partitionId}&new_master_id=${newMasterId}`);
+                showToast(`Failover triggered: P${partitionId} -> Node ${newMasterId}`, 'success');
+                document.getElementById('failover-partition').value = '';
+                document.getElementById('failover-new-master').value = '';
+                await refreshAll();
+            } catch (err) {
+                showToast('Failed to trigger failover: ' + err.message, 'error');
+            }
+        }
+
+        // Show partition detail modal
+        async function showPartitionDetail(partitionId) {
+            try {
+                const map = await apiGet('/map');
+                const partition = map.partitions.find(p => p.id === partitionId);
+
+                if (!partition) {
+                    showToast('Partition not found', 'error');
+                    return;
+                }
+
+                document.getElementById('modal-partition-id').textContent = partitionId;
+                document.getElementById('modal-partition-details').innerHTML = `
+                    <div class="form-group">
+                        <label>Master Node</label>
+                        <div style="padding:10px;background:#0f3460;border-radius:6px;">
+                            Node ${partition.master_id || '-'} (${partition.master_addr || 'N/A'})
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Replicas</label>
+                        <div style="padding:10px;background:#0f3460;border-radius:6px;">
+                            ${partition.replicas && partition.replicas.length > 0
+                                ? partition.replicas.join('<br>')
+                                : 'No replicas'}
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('partition-modal').classList.add('active');
+            } catch (err) {
+                showToast('Failed to load partition details: ' + err.message, 'error');
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('partition-modal').classList.remove('active');
+        }
+
+        // Remove node (placeholder - would need backend support)
+        async function removeNode(nodeId) {
+            if (!confirm(`Remove node ${nodeId} from the controller topology? This will trigger failover/rebalance.`)) {
+                return;
+            }
+
+            try {
+                await apiPost('/nodes/remove', { node_id: nodeId });
+                showToast(`Node ${nodeId} removed`, 'success');
+                await refreshAll();
+            } catch (err) {
+                showToast('Failed to remove node: ' + err.message, 'error');
+            }
+        }
+
+        // Move partition
+        async function movePartition() {
+            const partitionId = parseInt(document.getElementById('move-partition').value);
+            const targetNodeId = parseInt(document.getElementById('move-target-node').value);
+
+            if (isNaN(partitionId) || partitionId < 0) {
+                showToast('Please enter a valid partition ID', 'error');
+                return;
+            }
+            if (isNaN(targetNodeId) || targetNodeId < 1) {
+                showToast('Please enter a valid target node ID', 'error');
+                return;
+            }
+
+            if (!confirm(`Move partition ${partitionId} to node ${targetNodeId}? This will migrate data and then switch the master.`)) {
+                return;
+            }
+
+            try {
+                await apiPost('/partition/move', { partition_id: partitionId, target_node_id: targetNodeId });
+                showToast(`Partition ${partitionId} moved to node ${targetNodeId}`, 'success');
+                document.getElementById('move-partition').value = '';
+                document.getElementById('move-target-node').value = '';
+                await refreshAll();
+            } catch (err) {
+                showToast('Failed to move partition: ' + err.message, 'error');
+            }
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Close modal on backdrop click
+        document.getElementById('partition-modal').addEventListener('click', e => {
+            if (e.target.classList.contains('modal')) closeModal();
+        });
+
+        // Initial load
+        refreshAll();
+
+        // Auto-refresh every 10 seconds
+        setInterval(refreshAll, 10000);
+    </script>
+</body>
+</html>

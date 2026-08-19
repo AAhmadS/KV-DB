@@ -1,0 +1,9 @@
+# Normalise line endings. This repo is developed on Windows and built inside
+# Linux containers; a CRLF shell script fails in the container with an
+# unhelpful "no such file or directory" on the shebang line.
+* text=auto eol=lf
+*.sh text eol=lf
+Dockerfile text eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary

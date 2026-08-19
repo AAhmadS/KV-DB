@@ -1,0 +1,142 @@
+[harness] tearing the stack down (including volumes)
+[harness] 1 node
+[harness] client run 'n1-seed': -addr http://loadbalancer:8080 -ops 5000 -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.0
+elapsed: 3.900747322s
+throughput: 1281.8 ops/s (total=5000)
+latency: avg=12.465456ms min=336.181µs max=85.737764ms
+get: ok=0 miss=0 err=0
+set: ok=5000 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] client run 'n1-rep1': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
+elapsed: 20.005918349s
+throughput: 1260.5 ops/s (total=25218)
+latency: avg=12.682155ms min=536.889µs max=96.099335ms
+get: ok=10958 miss=1660 err=0
+set: ok=12600 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] client run 'n1-rep2': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
+elapsed: 20.04895741s
+throughput: 1347.9 ops/s (total=27023)
+latency: avg=11.859956ms min=433.002µs max=84.683577ms
+get: ok=13398 miss=138 err=0
+set: ok=13487 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] client run 'n1-rep3': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
+elapsed: 20.001954706s
+throughput: 1320.4 ops/s (total=26410)
+latency: avg=12.106571ms min=462.642µs max=95.551824ms
+get: ok=13064 miss=2 err=0
+set: ok=13344 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] 2 nodes
+[harness] client run 'n2-seed': -addr http://loadbalancer:8080 -ops 5000 -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.0
+elapsed: 4.916786242s
+throughput: 1016.9 ops/s (total=5000)
+latency: avg=15.703018ms min=678.549µs max=91.058133ms
+get: ok=0 miss=0 err=0
+set: ok=5000 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] client run 'n2-rep1': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
+elapsed: 20.061611942s
+throughput: 1186.8 ops/s (total=23810)
+latency: avg=13.461204ms min=512.259µs max=83.299676ms
+get: ok=11942 miss=0 err=0
+set: ok=11868 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] client run 'n2-rep2': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
+elapsed: 20.076763204s
+throughput: 1115.7 ops/s (total=22399)
+latency: avg=14.31863ms min=535.659µs max=99.556357ms
+get: ok=11153 miss=0 err=0
+set: ok=11246 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] client run 'n2-rep3': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
+elapsed: 20.00334138s
+throughput: 862.7 ops/s (total=17256)
+latency: avg=18.52921ms min=597.067µs max=147.279045ms
+get: ok=8505 miss=0 err=0
+set: ok=8751 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] 4 nodes
+[harness] client run 'n4-seed': -addr http://loadbalancer:8080 -ops 5000 -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.0
+elapsed: 4.733630274s
+throughput: 1056.3 ops/s (total=5000)
+latency: avg=15.117087ms min=404.499µs max=83.708929ms
+get: ok=0 miss=0 err=0
+set: ok=5000 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] client run 'n4-rep1': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
+elapsed: 20.032991423s
+throughput: 1003.2 ops/s (total=20097)
+latency: avg=15.931981ms min=522.482µs max=93.858432ms
+get: ok=10030 miss=0 err=0
+set: ok=10067 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] client run 'n4-rep2': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
+elapsed: 20.002971237s
+throughput: 1069.9 ops/s (total=21401)
+latency: avg=14.93728ms min=578.703µs max=88.220495ms
+get: ok=10646 miss=0 err=0
+set: ok=10755 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] client run 'n4-rep3': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
+elapsed: 20.033314291s
+throughput: 1111.3 ops/s (total=22264)
+latency: avg=14.380226ms min=536.812µs max=89.20837ms
+get: ok=11213 miss=0 err=0
+set: ok=11051 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] resource usage at 4 nodes under load (verifies the compose cpu/memory limits)
+[harness] declared limits, straight from the running containers
+--- kvdb-dbnode1 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 141999650
+nr_periods 2339
+nr_throttled 309
+throttled_usec 69813417
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode2 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 118427073
+nr_periods 1688
+nr_throttled 281
+throttled_usec 60990083
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode3 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 35571063
+nr_periods 986
+nr_throttled 1
+throttled_usec 1095
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode4 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 38001537
+nr_periods 990
+nr_throttled 2
+throttled_usec 90500
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-loadbalancer ---
+cpu.max: 100000 100000
+memory.max: 268435456
+usage_usec 218869932
+nr_periods 2316
+nr_throttled 2088
+throttled_usec 382050367
+nproc (what Go uses for GOMAXPROCS): 12

@@ -1,0 +1,29 @@
+[harness] tearing the stack down (including volumes)
+[harness] writing a known dataset
+[harness] restarting dbnode1
+[harness] after restarting dbnode1: missing=0 wrong=0 of 60
+[harness] restarting dbnode2
+[harness] after restarting dbnode2: missing=0 wrong=0 of 60
+[harness] restarting dbnode3
+[harness] after restarting dbnode3: missing=0 wrong=0 of 60
+wrote 60 keys
+after restarting dbnode1: missing=0 wrong=0 of 60
+after restarting dbnode2: missing=0 wrong=0 of 60
+after restarting dbnode3: missing=0 wrong=0 of 60
+--- controller log (rejoin) ---
+2026/08/19 07:12:33 [rejoin] node 1 re-registered; it holds no data, moving its partitions to replicas
+2026/08/19 07:12:33 [rejoin] node 1: 6 partitions promoted away, 14 reseeded, 0 unrecoverable
+2026/08/19 07:12:54 [rejoin] node 2 re-registered; it holds no data, moving its partitions to replicas
+2026/08/19 07:12:54 [rejoin] node 2: 5 partitions promoted away, 13 reseeded, 0 unrecoverable
+2026/08/19 07:13:16 [rejoin] node 3 re-registered; it holds no data, moving its partitions to replicas
+2026/08/19 07:13:16 [rejoin] node 3: 5 partitions promoted away, 5 reseeded, 0 unrecoverable
+=== Set/Get/Delete through the load balancer ===
+$ curl -X PUT http://localhost:8080/kv/smoke-key -d 'hello'
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key
+{"key":"smoke-key","value":"aGVsbG8=","version":83}
+
+$ curl -X DELETE http://localhost:8080/kv/smoke-key
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key   (expect 404)
+HTTP/1.1 404 Not Found

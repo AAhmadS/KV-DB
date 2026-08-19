@@ -1,0 +1,65 @@
+ Image kv-db-controller Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 616B 0.2s done
+#1 DONE 0.2s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 377B 0.1s done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for docker.io/library/golang:1.22-alpine
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/alpine:3.19
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B 0.0s done
+#5 DONE 0.1s
+
+#6 [stage-1 1/5] FROM docker.io/library/alpine:3.19
+#6 DONE 0.0s
+
+#7 [builder 1/6] FROM docker.io/library/golang:1.22-alpine
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 45.79kB 0.1s done
+#8 DONE 0.2s
+
+#9 [builder 2/6] WORKDIR /app
+#9 CACHED
+
+#10 [builder 3/6] COPY go.mod go.sum* ./
+#10 CACHED
+
+#11 [builder 4/6] RUN go mod download
+#11 CACHED
+
+#12 [builder 5/6] COPY . .
+#12 DONE 4.5s
+
+#13 [builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/controller
+#13 DONE 41.0s
+
+#14 [stage-1 2/5] RUN apk --no-cache add ca-certificates wget
+#14 CACHED
+
+#15 [stage-1 3/5] WORKDIR /app
+#15 CACHED
+
+#16 [stage-1 4/5] COPY --from=builder /bin/app .
+#16 DONE 0.1s
+
+#17 [stage-1 5/5] RUN mkdir -p /data
+#17 DONE 0.6s
+
+#18 exporting to image
+#18 exporting layers 0.1s done
+#18 writing image sha256:3480364f3c2e0df574429b1a0f2f7bff6cf254bd2147ecb7a897f49be3664abe done
+#18 naming to docker.io/library/kv-db-controller 0.0s done
+#18 DONE 0.2s
+
+#19 resolving provenance for metadata file
+#19 DONE 0.1s
+ Image kv-db-controller Built 

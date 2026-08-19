@@ -1,0 +1,20 @@
+[harness] tearing the stack down (including volumes)
+[harness] bringing up controller + loadbalancer + one database node
+=== Set/Get/Delete through the load balancer ===
+$ curl -X PUT http://localhost:8080/kv/smoke-key -d 'hello'
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key
+{"key":"smoke-key","value":"aGVsbG8=","version":1}
+
+$ curl -X DELETE http://localhost:8080/kv/smoke-key
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key   (expect 404)
+HTTP/1.1 404 Not Found
+[harness] client run '1node-mixed': -addr http://loadbalancer:8080 -duration 20s -concurrency 8 -keyspace 1000 -value-bytes 128 -read 0.5 -delete 0.1
+elapsed: 20.00182236s
+throughput: 1353.7 ops/s (total=27077)
+latency: avg=5.900354ms min=452.394µs max=90.23644ms
+get: ok=10062 miss=3489 err=0
+set: ok=10848 err=0
+delete: ok=2678 err=0
+errors: 0  aborted_at_shutdown: 0

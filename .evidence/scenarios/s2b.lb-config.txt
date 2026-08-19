@@ -1,0 +1,12 @@
+--- rep 1, LB_READ_FROM_REPLICAS=false ---
+kvdb-loadbalancer  | 2026/08/19 07:08:01 [loadbalancer] read strategy: master only (a Get always sees the latest acknowledged Set)
+--- rep 1, LB_READ_FROM_REPLICAS=true ---
+kvdb-loadbalancer  | 2026/08/19 07:08:28 [loadbalancer] read strategy: master and replicas (higher read throughput, no read-your-writes)
+--- rep 2, LB_READ_FROM_REPLICAS=false ---
+kvdb-loadbalancer  | 2026/08/19 07:08:55 [loadbalancer] read strategy: master only (a Get always sees the latest acknowledged Set)
+--- rep 2, LB_READ_FROM_REPLICAS=true ---
+kvdb-loadbalancer  | 2026/08/19 07:09:22 [loadbalancer] read strategy: master and replicas (higher read throughput, no read-your-writes)
+--- rep 3, LB_READ_FROM_REPLICAS=false ---
+kvdb-loadbalancer  | 2026/08/19 07:09:49 [loadbalancer] read strategy: master only (a Get always sees the latest acknowledged Set)
+--- rep 3, LB_READ_FROM_REPLICAS=true ---
+kvdb-loadbalancer  | 2026/08/19 07:10:16 [loadbalancer] read strategy: master and replicas (higher read throughput, no read-your-writes)

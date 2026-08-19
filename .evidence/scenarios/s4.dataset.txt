@@ -1,0 +1,4 @@
+wrote 60 keys
+after restarting dbnode1: missing=0 wrong=0 of 60
+after restarting dbnode2: missing=0 wrong=0 of 60
+after restarting dbnode3: missing=0 wrong=0 of 60

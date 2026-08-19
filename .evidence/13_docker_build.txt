@@ -1,0 +1,235 @@
+ Image kv-db-controller Building 
+ Image kv-db-loadbalancer Building 
+ Image kv-db-dbnode1 Building 
+ Image kv-db-dbnode2 Building 
+ Image kv-db-dbnode3 Building 
+ Image kv-db-dbnode4 Building 
+ Image kv-db-client Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.72kB 0.2s done
+#1 DONE 0.2s
+
+#2 [controller internal] load build definition from Dockerfile
+#2 transferring dockerfile: 377B 0.0s done
+#2 DONE 0.1s
+
+#3 [dbnode4 internal] load metadata for docker.io/library/alpine:3.19
+#3 DONE 0.0s
+
+#4 [dbnode4 internal] load metadata for docker.io/library/golang:1.22-alpine
+#4 DONE 0.0s
+
+#5 [dbnode4 internal] load .dockerignore
+#5 transferring context:
+#5 transferring context: 2B 0.0s done
+#5 DONE 0.0s
+
+#4 [controller internal] load metadata for docker.io/library/golang:1.22-alpine
+#4 DONE 0.0s
+
+#3 [controller internal] load metadata for docker.io/library/alpine:3.19
+#3 DONE 0.0s
+
+#6 [dbnode1 builder 1/6] FROM docker.io/library/golang:1.22-alpine
+#6 DONE 0.0s
+
+#7 [dbnode1 stage-1 1/5] FROM docker.io/library/alpine:3.19
+#7 DONE 0.0s
+
+#8 [dbnode4 internal] load build context
+#8 transferring context: 56.12kB 0.1s done
+#8 transferring context: 56.12kB 0.1s done
+#8 DONE 0.1s
+
+#9 [client builder 4/6] RUN go mod download
+#9 CACHED
+
+#10 [controller builder 4/6] RUN go mod download
+#10 CACHED
+
+#11 [loadbalancer builder 4/6] RUN go mod download
+#11 CACHED
+
+#12 [dbnode4 builder 2/6] WORKDIR /app
+#12 CACHED
+
+#13 [dbnode4 builder 3/6] COPY go.mod go.sum* ./
+#13 CACHED
+
+#14 [dbnode4 builder 4/6] RUN go mod download
+#14 CACHED
+
+#15 [dbnode4 builder 5/6] COPY . .
+#15 DONE 2.8s
+
+#16 [controller builder 5/6] COPY . .
+#16 DONE 2.8s
+
+#17 [loadbalancer builder 5/6] COPY . .
+#17 DONE 2.9s
+
+#18 [client builder 5/6] COPY . .
+#18 DONE 2.9s
+
+#19 [dbnode1 builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/dbnode
+#19 ...
+
+#20 [controller builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/controller
+#20 ...
+
+#21 [loadbalancer builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/loadbalancer
+#21 ...
+
+#22 [client builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/client
+#22 DONE 84.6s
+
+#20 [controller builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/controller
+#20 ...
+
+#23 [client stage-1 3/5] WORKDIR /app
+#23 CACHED
+
+#24 [client stage-1 4/5] COPY --from=builder /bin/app .
+#24 CACHED
+
+#25 [client stage-1 2/5] RUN apk --no-cache add ca-certificates wget
+#25 CACHED
+
+#26 [client stage-1 5/5] RUN mkdir -p /data
+#26 CACHED
+
+#27 [client] exporting to image
+#27 exporting layers done
+#27 writing image sha256:d9ead4452e02ba34cfd8c70f8e369fff75da821603951980d1d2aab06e770bff 0.0s done
+#27 naming to docker.io/library/kv-db-client 0.0s done
+#27 DONE 0.2s
+
+#21 [loadbalancer builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/loadbalancer
+#21 ...
+
+#28 [client] resolving provenance for metadata file
+#28 DONE 0.2s
+
+#20 [controller builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/controller
+#20 ...
+
+#21 [loadbalancer builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/loadbalancer
+#21 DONE 90.0s
+
+#20 [controller builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/controller
+#20 ...
+
+#25 [dbnode1 stage-1 2/5] RUN apk --no-cache add ca-certificates wget
+#25 CACHED
+
+#23 [dbnode1 stage-1 3/5] WORKDIR /app
+#23 CACHED
+
+#25 [loadbalancer stage-1 2/5] RUN apk --no-cache add ca-certificates wget
+#25 CACHED
+
+#23 [loadbalancer stage-1 3/5] WORKDIR /app
+#23 CACHED
+
+#29 [loadbalancer stage-1 4/5] COPY --from=builder /bin/app .
+#29 ...
+
+#19 [dbnode2 builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/dbnode
+#19 DONE 90.5s
+
+#20 [controller builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/controller
+#20 ...
+
+#29 [loadbalancer stage-1 4/5] COPY --from=builder /bin/app .
+#29 DONE 0.6s
+
+#30 [dbnode1 stage-1 4/5] COPY --from=builder /bin/app .
+#30 CACHED
+
+#31 [dbnode1 stage-1 5/5] RUN mkdir -p /data
+#31 CACHED
+
+#30 [dbnode3 stage-1 4/5] COPY --from=builder /bin/app .
+#30 CACHED
+
+#32 [dbnode3] exporting to image
+#32 exporting layers done
+#32 writing image sha256:b82206aecf3e4d3bff615f73d552cd36f036725d4e61d715749eef3b438c9138 0.0s done
+#32 naming to docker.io/library/kv-db-dbnode3 0.1s done
+#32 DONE 0.2s
+
+#33 [dbnode1] exporting to image
+#33 exporting layers done
+#33 writing image sha256:83d67778aa69932cbaf7c2a8e5780fa530fb9f9a7c05552915419142c3c8955d 0.1s done
+#33 naming to docker.io/library/kv-db-dbnode1 0.1s done
+#33 DONE 0.2s
+
+#34 [dbnode2] exporting to image
+#34 exporting layers done
+#34 writing image sha256:0efc74c402ee0374e100768362367e377cf40ee1e7295606e5f74fdd88d69703 0.2s done
+#34 naming to docker.io/library/kv-db-dbnode2 0.0s done
+#34 DONE 0.4s
+
+#35 [dbnode4] exporting to image
+#35 exporting layers done
+#35 writing image sha256:c40a35b9e94ede7d7359e6cfb5b059357e1c890de6adc6aa180f1aebf623025c 0.1s done
+#35 naming to docker.io/library/kv-db-dbnode4 0.1s done
+#35 DONE 0.4s
+
+#36 [loadbalancer stage-1 5/5] RUN mkdir -p /data
+#36 ...
+
+#20 [controller builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/controller
+#20 DONE 91.8s
+
+#36 [loadbalancer stage-1 5/5] RUN mkdir -p /data
+#36 ...
+
+#37 [controller stage-1 4/5] COPY --from=builder /bin/app .
+#37 CACHED
+
+#38 [controller stage-1 5/5] RUN mkdir -p /data
+#38 CACHED
+
+#39 [controller] exporting to image
+#39 exporting layers done
+#39 writing image sha256:24f6509b1a2e3a3dc61d1b58d45e0365a44f091dd4dce4231811faabf68f534b 0.0s done
+#39 naming to docker.io/library/kv-db-controller 0.0s done
+#39 DONE 0.1s
+
+#40 [dbnode3] resolving provenance for metadata file
+#40 DONE 0.3s
+
+#36 [loadbalancer stage-1 5/5] RUN mkdir -p /data
+#36 DONE 1.4s
+
+#41 [loadbalancer] exporting to image
+#41 ...
+
+#42 [dbnode4] resolving provenance for metadata file
+#42 DONE 0.1s
+
+#43 [dbnode1] resolving provenance for metadata file
+#43 DONE 0.5s
+
+#44 [dbnode2] resolving provenance for metadata file
+#44 DONE 0.4s
+
+#41 [loadbalancer] exporting to image
+#41 exporting layers 0.3s done
+#41 writing image sha256:2d360b737c8c281bb4558e78898373c14e8bf7c52bd831e0efa24d59c85abb9d 0.0s done
+#41 naming to docker.io/library/kv-db-loadbalancer 0.0s done
+#41 DONE 0.5s
+
+#45 [controller] resolving provenance for metadata file
+#45 DONE 0.1s
+
+#46 [loadbalancer] resolving provenance for metadata file
+#46 DONE 0.1s
+ Image kv-db-dbnode2 Built 
+ Image kv-db-dbnode3 Built 
+ Image kv-db-dbnode4 Built 
+ Image kv-db-loadbalancer Built 
+ Image kv-db-client Built 
+ Image kv-db-controller Built 
+ Image kv-db-dbnode1 Built 

@@ -1,0 +1,6 @@
+NAME                IMAGE                COMMAND   SERVICE        CREATED          STATUS                    PORTS
+kvdb-controller     kv-db-controller     "./app"   controller     25 seconds ago   Up 24 seconds (healthy)   0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp
+kvdb-dbnode1        kv-db-dbnode1        "./app"   dbnode1        25 seconds ago   Up 13 seconds (healthy)   0.0.0.0:8001->8001/tcp, [::]:8001->8001/tcp, 0.0.0.0:9001->9001/tcp, [::]:9001->9001/tcp
+kvdb-dbnode2        kv-db-dbnode2        "./app"   dbnode2        25 seconds ago   Up 13 seconds (healthy)   0.0.0.0:8002->8002/tcp, [::]:8002->8002/tcp, 0.0.0.0:9002->9002/tcp, [::]:9002->9002/tcp
+kvdb-dbnode3        kv-db-dbnode3        "./app"   dbnode3        25 seconds ago   Up 13 seconds (healthy)   0.0.0.0:8003->8003/tcp, [::]:8003->8003/tcp, 0.0.0.0:9003->9003/tcp, [::]:9003->9003/tcp
+kvdb-loadbalancer   kv-db-loadbalancer   "./app"   loadbalancer   25 seconds ago   Up 13 seconds (healthy)   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp

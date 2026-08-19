@@ -1,0 +1,19 @@
+COMMAND: docker compose --profile demo run --rm --no-deps client -addr http://loadbalancer:8080 -duration 40s -concurrency 8 -keyspace 4000 -read 0.8
+STARTED: 2026-08-19T07:16:53Z
+
+ Container kv-db-client-run-b28729dc707f Creating 
+ Container kv-db-client-run-b28729dc707f Created 
+progress: 1136 ops (1135 ops/s)progress: 2388 ops (1193 ops/s)progress: 3622 ops (1207 ops/s)progress: 4880 ops (1220 ops/s)progress: 6093 ops (1218 ops/s)progress: 7320 ops (1220 ops/s)progress: 8337 ops (1191 ops/s)progress: 9657 ops (1207 ops/s)progress: 10843 ops (1205 ops/s)progress: 11475 ops (1147 ops/s)progress: 12706 ops (1155 ops/s)progress: 13888 ops (1157 ops/s)progress: 15059 ops (1158 ops/s)progress: 16183 ops (1156 ops/s)progress: 17394 ops (1160 ops/s)progress: 18502 ops (1156 ops/s)progress: 19383 ops (1140 ops/s)progress: 20518 ops (1140 ops/s)progress: 21735 ops (1144 ops/s)progress: 22894 ops (1145 ops/s)progress: 24126 ops (1149 ops/s)progress: 25270 ops (1149 ops/s)progress: 26386 ops (1147 ops/s)progress: 27551 ops (1148 ops/s)progress: 28647 ops (1146 ops/s)progress: 29867 ops (1149 ops/s)progress: 30824 ops (1142 ops/s)progress: 31966 ops (1142 ops/s)progress: 33021 ops (1139 ops/s)progress: 34351 ops (1145 ops/s)progress: 35485 ops (1145 ops/s)progress: 36673 ops (1146 ops/s)progress: 37745 ops (1144 ops/s)progress: 38936 ops (1145 ops/s)progress: 40179 ops (1148 ops/s)progress: 41322 ops (1148 ops/s)progress: 42532 ops (1149 ops/s)progress: 43527 ops (1145 ops/s)progress: 44707 ops (1146 ops/s)progress: 45830 ops (1146 ops/s)addr: http://loadbalancer:8080
+mode: duration=40s concurrency=8
+mix: read=0.80 delete=0.00 set=0.20
+keys: 4000 value_bytes: 128
+elapsed: 40.049405572s
+throughput: 1144.5 ops/s (total=45838)
+latency: avg=6.978205ms min=465.556µs max=370.367195ms
+get: ok=31159 miss=5602 err=0
+set: ok=9077 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+
+
+EXIT CODE: 0

@@ -1,0 +1,10 @@
+=== Set/Get/Delete through the load balancer ===
+$ curl -X PUT http://localhost:8080/kv/smoke-key -d 'hello'
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key
+{"key":"smoke-key","value":"aGVsbG8=","version":21473}
+
+$ curl -X DELETE http://localhost:8080/kv/smoke-key
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key   (expect 404)
+HTTP/1.1 404 Not Found

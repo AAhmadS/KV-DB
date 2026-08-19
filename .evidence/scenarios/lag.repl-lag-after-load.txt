@@ -1,0 +1,5 @@
+07:33:02 node@8001=0 node@8002=0 node@8003=0 node@8004=n/a 
+07:33:05 node@8001=0 node@8002=0 node@8003=0 node@8004=n/a 
+07:33:08 node@8001=0 node@8002=0 node@8003=0 node@8004=n/a 
+07:33:12 node@8001=0 node@8002=0 node@8003=0 node@8004=n/a 
+07:33:15 node@8001=0 node@8002=0 node@8003=0 node@8004=n/a 

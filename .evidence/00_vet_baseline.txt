@@ -1,0 +1,4 @@
+# github.com/kvdb/kvdb/pkg/storage
+pkg\storage\snapshot.go:200:20: method WriteTo(w io.Writer) error should have signature WriteTo(io.Writer) (int64, error)
+# github.com/kvdb/kvdb/internal/dbnode
+internal\dbnode\node.go:433:2: unreachable code

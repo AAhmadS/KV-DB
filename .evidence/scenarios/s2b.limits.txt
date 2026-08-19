@@ -1,0 +1,49 @@
+$ docker inspect --format '{{.Name}} NanoCpus={{.HostConfig.NanoCpus}} Memory={{.HostConfig.Memory}}'
+/kvdb-controller NanoCpus=1000000000 Memory=268435456
+/kvdb-dbnode1 NanoCpus=1000000000 Memory=536870912
+/kvdb-dbnode2 NanoCpus=1000000000 Memory=536870912
+/kvdb-dbnode3 NanoCpus=1000000000 Memory=536870912
+/kvdb-loadbalancer NanoCpus=1000000000 Memory=268435456
+
+=== cgroup limits and CPU throttling, read inside each container ===
+(cpu.max is 'quota period' in microseconds: 100000 100000 == exactly 1.0 CPU)
+--- kvdb-controller ---
+cpu.max: 100000 100000
+memory.max: 268435456
+usage_usec 1721376
+nr_periods 240
+nr_throttled 0
+throttled_usec 0
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode1 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 30318246
+nr_periods 1327
+nr_throttled 55
+throttled_usec 6675712
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode2 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 20290418
+nr_periods 1311
+nr_throttled 3
+throttled_usec 126502
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode3 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 29371694
+nr_periods 1311
+nr_throttled 54
+throttled_usec 7250590
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-loadbalancer ---
+cpu.max: 100000 100000
+memory.max: 268435456
+usage_usec 20146282
+nr_periods 212
+nr_throttled 200
+throttled_usec 49223909
+nproc (what Go uses for GOMAXPROCS): 12

@@ -1,0 +1,10 @@
+STARTED AT: 07:17:03.956422200
+HTTP/1.1 200 OK
+Content-Length: 82
+Connection: keep-alive
+Content-Type: application/json
+Date: Wed, 19 Aug 2026 07:17:04 GMT
+Keep-Alive: timeout=60
+Proxy-Connection: keep-alive
+
+{"new_num_partitions":32,"old_num_partitions":16,"status":"started","version":17}

@@ -1,0 +1,11 @@
+[harness] tearing the stack down (including volumes)
+[harness] write-only load; sampling each node's replication queue every second
+[harness] client run 'write-only': -addr http://loadbalancer:8080 -duration 30s -concurrency 16 -keyspace 20000 -value-bytes 512 -read 0.0
+elapsed: 30.03057544s
+throughput: 655.2 ops/s (total=19677)
+latency: avg=24.393667ms min=964.015µs max=180.127264ms
+get: ok=0 miss=0 err=0
+set: ok=19677 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] queue depth after the load stops

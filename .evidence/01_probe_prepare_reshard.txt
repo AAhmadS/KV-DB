@@ -1,0 +1,6 @@
+=== RUN   TestProbe_PrepareReshard
+    probe_reshard_test.go:28: PrepareReshard DID NOT RETURN within 3s (deadlock)
+--- FAIL: TestProbe_PrepareReshard (3.01s)
+FAIL
+FAIL	github.com/kvdb/kvdb/test	5.463s
+FAIL

@@ -1,0 +1,27 @@
+# Compiled binaries. These were committed once; they are 40 MB of build output
+# that `go build` reproduces in seconds, and they go stale silently.
+*.exe
+*.dll
+*.so
+*.dylib
+/bin/
+
+# Go test and coverage artifacts
+*.test
+*.out
+coverage.*
+
+# Node data directories. Nodes are in-memory (see STATUS.md), so these only
+# ever appear when the compose volumes are bind-mounted locally.
+/data/
+node*-data/
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Local Claude Code settings (machine-specific permissions)
+.claude/settings.local.json

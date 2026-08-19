@@ -1,0 +1,12 @@
+goos: windows
+goarch: amd64
+pkg: github.com/kvdb/kvdb/test
+cpu: AMD Ryzen 5 5600H with Radeon Graphics         
+BenchmarkWrite-12    	    5000	   2637376 ns/op
+BenchmarkWrite-12    	    5000	   2393790 ns/op
+BenchmarkWrite-12    	    5000	   2290911 ns/op
+BenchmarkRead-12     	    5000	   1909079 ns/op
+BenchmarkRead-12     	    5000	   2093065 ns/op
+BenchmarkRead-12     	    5000	   2187060 ns/op
+PASS
+ok  	github.com/kvdb/kvdb/test	70.160s

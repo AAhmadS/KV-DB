@@ -1,0 +1,38 @@
+=== s1 ===
+s1 EXIT=0  started=07:01:59 finished=07:02:36
+=== s2 ===
+s2 EXIT=0  started=07:02:36 finished=07:07:32
+=== s2b ===
+s2b EXIT=0  started=07:07:32 finished=07:10:50
+=== s3 ===
+s3 EXIT=0  started=07:10:50 finished=07:12:00
+=== s4 ===
+s4 EXIT=0  started=07:12:00 finished=07:13:41
+=== s5 ===
+s5 EXIT=0  started=07:13:41 finished=07:14:54
+=== s6 ===
+s6 EXIT=0  started=07:14:54 finished=07:16:25
+=== reshard ===
+reshard EXIT=0  started=07:16:25 finished=07:18:16
+=== lag ===
+lag EXIT=0  started=07:18:16 finished=07:20:01
+sweep started: 2026-08-19T07:01:59Z
+images:
+kv-db-client:latest de4047add384 2026-08-19 05:05:10 +0000 UTC
+kv-db-controller:latest 4b629f28e485 2026-08-19 06:34:23 +0000 UTC
+kv-db-dbnode1:latest 83d67778aa69 2026-08-19 04:27:12 +0000 UTC
+kv-db-dbnode2:latest 0efc74c402ee 2026-08-19 04:27:12 +0000 UTC
+kv-db-dbnode3:latest b82206aecf3e 2026-08-19 04:27:12 +0000 UTC
+kv-db-dbnode4:latest c40a35b9e94e 2026-08-19 04:27:12 +0000 UTC
+kv-db-loadbalancer:latest 86573542719a 2026-08-19 06:08:00 +0000 UTC
+
+s1 EXIT=0  started=07:01:59 finished=07:02:36
+s2 EXIT=0  started=07:02:36 finished=07:07:32
+s2b EXIT=0  started=07:07:32 finished=07:10:50
+s3 EXIT=0  started=07:10:50 finished=07:12:00
+s4 EXIT=0  started=07:12:00 finished=07:13:41
+s5 EXIT=0  started=07:13:41 finished=07:14:54
+s6 EXIT=0  started=07:14:54 finished=07:16:25
+reshard EXIT=0  started=07:16:25 finished=07:18:16
+lag EXIT=0  started=07:18:16 finished=07:20:01
+sweep finished: 2026-08-19T07:20:01Z

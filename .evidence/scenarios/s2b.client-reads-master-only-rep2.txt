@@ -1,0 +1,19 @@
+COMMAND: docker compose --profile demo run --rm --no-deps client -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -read 1.0
+STARTED: 2026-08-19T07:08:59Z
+
+ Container kv-db-client-run-3a2bf462619f Creating 
+ Container kv-db-client-run-3a2bf462619f Created 
+progress: 1283 ops (1282 ops/s)progress: 2775 ops (1387 ops/s)progress: 4335 ops (1445 ops/s)progress: 5777 ops (1444 ops/s)progress: 7220 ops (1444 ops/s)progress: 8516 ops (1419 ops/s)progress: 9880 ops (1411 ops/s)progress: 11339 ops (1417 ops/s)progress: 12715 ops (1413 ops/s)progress: 13950 ops (1395 ops/s)progress: 15177 ops (1380 ops/s)progress: 16612 ops (1384 ops/s)progress: 17735 ops (1364 ops/s)progress: 18969 ops (1355 ops/s)progress: 20327 ops (1355 ops/s)progress: 21540 ops (1346 ops/s)progress: 22647 ops (1332 ops/s)progress: 23993 ops (1333 ops/s)progress: 25361 ops (1335 ops/s)progress: 26610 ops (1330 ops/s)
+addr: http://loadbalancer:8080
+mode: duration=20s concurrency=16
+mix: read=1.00 delete=0.00 set=0.00
+keys: 5000 value_bytes: 128
+elapsed: 20.003011171s
+throughput: 1330.8 ops/s (total=26620)
+latency: avg=12.010324ms min=462.524µs max=93.344143ms
+get: ok=17189 miss=9431 err=0
+set: ok=0 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+
+EXIT CODE: 0

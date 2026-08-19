@@ -1,0 +1,105 @@
+2026-08-19T07:06:35Z
+kv-db-client-run-d74fe8c8e42f	41.65%	8.566MiB / 256MiB	3.35%
+kvdb-dbnode4	38.06%	19.83MiB / 512MiB	3.87%
+kvdb-dbnode3	37.09%	19.98MiB / 512MiB	3.90%
+kvdb-dbnode2	62.22%	57.89MiB / 512MiB	11.31%
+kvdb-loadbalancer	108.93%	11.23MiB / 256MiB	4.39%
+kvdb-dbnode1	60.77%	66.25MiB / 512MiB	12.94%
+kvdb-controller	3.73%	9.227MiB / 256MiB	3.60%
+baghboonvoiceagent-app-1	0.19%	50.21MiB / 7.46GiB	0.66%
+baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+
+2026-08-19T07:06:39Z
+kv-db-client-run-d74fe8c8e42f	41.48%	8.879MiB / 256MiB	3.47%
+kvdb-dbnode4	39.03%	20.6MiB / 512MiB	4.02%
+kvdb-dbnode3	38.35%	21.16MiB / 512MiB	4.13%
+kvdb-dbnode2	66.67%	60.34MiB / 512MiB	11.78%
+kvdb-loadbalancer	101.95%	11.31MiB / 256MiB	4.42%
+kvdb-dbnode1	58.20%	66.62MiB / 512MiB	13.01%
+kvdb-controller	7.42%	8.711MiB / 256MiB	3.40%
+baghboonvoiceagent-app-1	8.57%	50.21MiB / 7.46GiB	0.66%
+baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+
+2026-08-19T07:06:44Z
+kv-db-client-run-d74fe8c8e42f	38.36%	9.867MiB / 256MiB	3.85%
+kvdb-dbnode4	40.51%	21.82MiB / 512MiB	4.26%
+kvdb-dbnode3	34.47%	20.24MiB / 512MiB	3.95%
+kvdb-dbnode2	67.77%	60.98MiB / 512MiB	11.91%
+kvdb-loadbalancer	105.40%	10.97MiB / 256MiB	4.28%
+kvdb-dbnode1	63.44%	67.35MiB / 512MiB	13.15%
+kvdb-controller	3.45%	8.672MiB / 256MiB	3.39%
+baghboonvoiceagent-app-1	0.23%	50.21MiB / 7.46GiB	0.66%
+baghboonvoiceagent-caddy-1	0.03%	13.12MiB / 7.46GiB	0.17%
+
+2026-08-19T07:06:49Z
+kv-db-client-run-d74fe8c8e42f	41.81%	9.766MiB / 256MiB	3.81%
+kvdb-dbnode4	38.83%	21.59MiB / 512MiB	4.22%
+kvdb-dbnode3	33.00%	21.02MiB / 512MiB	4.11%
+kvdb-dbnode2	62.05%	62.92MiB / 512MiB	12.29%
+kvdb-loadbalancer	100.90%	11.09MiB / 256MiB	4.33%
+kvdb-dbnode1	56.57%	67.94MiB / 512MiB	13.27%
+kvdb-controller	2.67%	8.207MiB / 256MiB	3.21%
+baghboonvoiceagent-app-1	0.89%	50.21MiB / 7.46GiB	0.66%
+baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+
+2026-08-19T07:06:54Z
+kv-db-client-run-d74fe8c8e42f	39.95%	9.738MiB / 256MiB	3.80%
+kvdb-dbnode4	40.50%	21.98MiB / 512MiB	4.29%
+kvdb-dbnode3	43.37%	21.48MiB / 512MiB	4.19%
+kvdb-dbnode2	63.91%	62.65MiB / 512MiB	12.24%
+kvdb-loadbalancer	105.44%	11.31MiB / 256MiB	4.42%
+kvdb-dbnode1	61.21%	68.11MiB / 512MiB	13.30%
+kvdb-controller	3.89%	8.277MiB / 256MiB	3.23%
+baghboonvoiceagent-app-1	0.19%	50.21MiB / 7.46GiB	0.66%
+baghboonvoiceagent-caddy-1	0.02%	13.12MiB / 7.46GiB	0.17%
+
+2026-08-19T07:06:58Z
+kvdb-dbnode4	34.28%	20.02MiB / 512MiB	3.91%
+kvdb-dbnode3	20.82%	19.93MiB / 512MiB	3.89%
+kvdb-dbnode2	36.75%	62.89MiB / 512MiB	12.28%
+kvdb-loadbalancer	93.71%	9.816MiB / 256MiB	3.83%
+kvdb-dbnode1	32.96%	66.37MiB / 512MiB	12.96%
+kvdb-controller	2.36%	7.625MiB / 256MiB	2.98%
+baghboonvoiceagent-app-1	0.19%	50.21MiB / 7.46GiB	0.66%
+baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+
+2026-08-19T07:07:03Z
+kvdb-dbnode4	0.05%	20.01MiB / 512MiB	3.91%
+kvdb-dbnode3	0.02%	20.08MiB / 512MiB	3.92%
+kvdb-dbnode2	0.05%	63.39MiB / 512MiB	12.38%
+kvdb-loadbalancer	0.00%	9.691MiB / 256MiB	3.79%
+kvdb-dbnode1	0.07%	67.15MiB / 512MiB	13.11%
+kvdb-controller	0.17%	8.91MiB / 256MiB	3.48%
+baghboonvoiceagent-app-1	0.32%	50.21MiB / 7.46GiB	0.66%
+baghboonvoiceagent-caddy-1	0.03%	13.12MiB / 7.46GiB	0.17%
+
+2026-08-19T07:07:08Z
+kvdb-dbnode4	0.00%	20.73MiB / 512MiB	4.05%
+kvdb-dbnode3	0.07%	20.45MiB / 512MiB	3.99%
+kvdb-dbnode2	0.12%	63.21MiB / 512MiB	12.35%
+kvdb-loadbalancer	0.00%	10.81MiB / 256MiB	4.22%
+kvdb-dbnode1	0.13%	66.84MiB / 512MiB	13.06%
+kvdb-controller	0.39%	9.125MiB / 256MiB	3.56%
+baghboonvoiceagent-app-1	0.29%	50.21MiB / 7.46GiB	0.66%
+baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+
+2026-08-19T07:07:12Z
+kvdb-dbnode4	0.07%	20.17MiB / 512MiB	3.94%
+kvdb-dbnode3	0.00%	20.07MiB / 512MiB	3.92%
+kvdb-dbnode2	7.01%	63.21MiB / 512MiB	12.35%
+kvdb-loadbalancer	0.00%	10.11MiB / 256MiB	3.95%
+kvdb-dbnode1	0.00%	66.57MiB / 512MiB	13.00%
+kvdb-controller	0.22%	8.934MiB / 256MiB	3.49%
+baghboonvoiceagent-app-1	0.30%	51.39MiB / 7.46GiB	0.67%
+baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+
+2026-08-19T07:07:17Z
+kvdb-dbnode4	0.00%	20.28MiB / 512MiB	3.96%
+kvdb-dbnode3	0.00%	20.55MiB / 512MiB	4.01%
+kvdb-dbnode2	0.00%	63.09MiB / 512MiB	12.32%
+kvdb-loadbalancer	0.04%	10.48MiB / 256MiB	4.09%
+kvdb-dbnode1	0.00%	66.3MiB / 512MiB	12.95%
+kvdb-controller	0.00%	8.68MiB / 256MiB	3.39%
+baghboonvoiceagent-app-1	0.40%	51.32MiB / 7.46GiB	0.67%
+baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+

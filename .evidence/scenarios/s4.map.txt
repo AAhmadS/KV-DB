@@ -1,0 +1,20 @@
+--- before the rolling restart ---
+num_partitions=16 version=16 reshard=stable
+masters : {'dbnode1:8001': 6, 'dbnode2:8002': 5, 'dbnode3:8003': 5}
+replicas: {'dbnode1:8001': 8, 'dbnode2:8002': 8}
+
+--- after restarting dbnode1 ---
+num_partitions=16 version=29 reshard=stable
+masters : {'dbnode1:8001': 6, 'dbnode2:8002': 5, 'dbnode3:8003': 5}
+replicas: {'dbnode1:8001': 8, 'dbnode2:8002': 8}
+
+--- after restarting dbnode2 ---
+num_partitions=16 version=40 reshard=stable
+masters : {'dbnode1:8001': 6, 'dbnode2:8002': 5, 'dbnode3:8003': 5}
+replicas: {'dbnode1:8001': 8, 'dbnode2:8002': 8}
+
+--- after restarting dbnode3 ---
+num_partitions=16 version=51 reshard=stable
+masters : {'dbnode1:8001': 6, 'dbnode2:8002': 5, 'dbnode3:8003': 5}
+replicas: {'dbnode1:8001': 8, 'dbnode2:8002': 7, 'dbnode3:8003': 1}
+

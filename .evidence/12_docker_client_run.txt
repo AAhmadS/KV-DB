@@ -1,0 +1,88 @@
+ Container kvdb-controller Running 
+ Container kvdb-loadbalancer Running 
+ Container kvdb-controller Waiting 
+ Container kvdb-controller Healthy 
+ Image kv-db-client Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.62kB 0.1s done
+#1 DONE 0.1s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 377B 0.0s done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.19
+#3 ...
+
+#4 [internal] load metadata for docker.io/library/golang:1.22-alpine
+#4 DONE 1.6s
+
+#3 [internal] load metadata for docker.io/library/alpine:3.19
+#3 DONE 4.5s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [builder 1/6] FROM docker.io/library/golang:1.22-alpine@sha256:1699c10032ca2582ec89a24a1312d986a3f094aed3d5c1147b19880afe40e052
+#6 DONE 0.0s
+
+#7 [stage-1 1/5] FROM docker.io/library/alpine:3.19@sha256:6baf43584bcb78f2e5847d1de515f23499913ac9f12bdf834811a3145eb11ca1
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 4.66kB 0.0s done
+#8 DONE 0.1s
+
+#9 [builder 2/6] WORKDIR /app
+#9 CACHED
+
+#10 [builder 3/6] COPY go.mod go.sum* ./
+#10 CACHED
+
+#11 [builder 4/6] RUN go mod download
+#11 0.395 go: no module dependencies to download
+#11 DONE 0.4s
+
+#12 [builder 5/6] COPY . .
+#12 DONE 0.3s
+
+#13 [builder 6/6] RUN CGO_ENABLED=0 GOOS=linux go build -o /bin/app ./cmd/client
+#13 DONE 20.7s
+
+#14 [stage-1 2/5] RUN apk --no-cache add ca-certificates wget
+#14 CACHED
+
+#15 [stage-1 3/5] WORKDIR /app
+#15 CACHED
+
+#16 [stage-1 4/5] COPY --from=builder /bin/app .
+#16 DONE 0.1s
+
+#17 [stage-1 5/5] RUN mkdir -p /data
+#17 DONE 0.3s
+
+#18 exporting to image
+#18 exporting layers 0.1s done
+#18 writing image sha256:d9ead4452e02ba34cfd8c70f8e369fff75da821603951980d1d2aab06e770bff done
+#18 naming to docker.io/library/kv-db-client done
+#18 DONE 0.1s
+
+#19 resolving provenance for metadata file
+#19 DONE 0.1s
+ Image kv-db-client Built 
+ Container kvdb-loadbalancer Waiting 
+ Container kvdb-loadbalancer Healthy 
+ Container kv-db-client-run-8c4cefb6b2c8 Creating 
+ Container kv-db-client-run-8c4cefb6b2c8 Created 
+progress: 910 ops (908 ops/s)progress: 1941 ops (970 ops/s)progress: 3067 ops (1022 ops/s)progress: 4043 ops (1011 ops/s)progress: 4954 ops (991 ops/s)progress: 5868 ops (978 ops/s)progress: 7125 ops (1018 ops/s)progress: 8318 ops (1040 ops/s)progress: 9445 ops (1049 ops/s)progress: 10578 ops (1058 ops/s)progress: 11898 ops (1082 ops/s)progress: 12992 ops (1083 ops/s)progress: 14062 ops (1082 ops/s)progress: 15053 ops (1075 ops/s)progress: 16230 ops (1082 ops/s)progress: 17544 ops (1096 ops/s)progress: 18834 ops (1108 ops/s)progress: 20131 ops (1118 ops/s)progress: 21175 ops (1114 ops/s)addr: http://loadbalancer:8080
+mode: duration=20s concurrency=8
+mix: read=0.50 delete=0.10 set=0.40
+keys: 1000 value_bytes: 128
+elapsed: 20.001976112s
+throughput: 1116.5 ops/s (total=22332)
+latency: avg=7.151815ms min=528.018µs max=74.928011ms
+get: ok=8107 miss=2976 err=0
+set: ok=9061 err=7
+delete: ok=2180 err=1
+

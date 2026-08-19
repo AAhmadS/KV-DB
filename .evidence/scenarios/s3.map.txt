@@ -1,0 +1,10 @@
+--- before the kill ---
+num_partitions=16 version=16 reshard=stable
+masters : {'dbnode1:8001': 5, 'dbnode2:8002': 6, 'dbnode3:8003': 5}
+replicas: {'dbnode2:8002': 9, 'dbnode3:8003': 7}
+
+--- after failover ---
+num_partitions=16 version=22 reshard=stable
+masters : {'dbnode1:8001': 5, 'dbnode3:8003': 11}
+replicas: {'dbnode3:8003': 1}
+

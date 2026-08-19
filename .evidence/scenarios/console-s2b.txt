@@ -1,0 +1,104 @@
+[harness] tearing the stack down (including volumes)
+[harness] seeding the keyspace so reads hit data
+[harness] client run 'seed': -addr http://loadbalancer:8080 -ops 5000 -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.0
+elapsed: 5.490946107s
+throughput: 910.6 ops/s (total=5000)
+latency: avg=17.395125ms min=584.359µs max=116.763595ms
+get: ok=0 miss=0 err=0
+set: ok=5000 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] load balancer restart with LB_READ_FROM_REPLICAS=false (rep 1)
+[harness] client run 'reads-master-only-rep1': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -read 1.0
+elapsed: 20.037616684s
+throughput: 1234.7 ops/s (total=24741)
+latency: avg=12.94557ms min=580.657µs max=96.53013ms
+get: ok=15994 miss=8747 err=0
+set: ok=0 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] load balancer restart with LB_READ_FROM_REPLICAS=true (rep 1)
+[harness] client run 'reads-with-replicas-rep1': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -read 1.0
+elapsed: 20.042807454s
+throughput: 1380.4 ops/s (total=27668)
+latency: avg=11.578207ms min=404.662µs max=95.74585ms
+get: ok=17632 miss=10036 err=0
+set: ok=0 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] load balancer restart with LB_READ_FROM_REPLICAS=false (rep 2)
+[harness] client run 'reads-master-only-rep2': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -read 1.0
+elapsed: 20.003011171s
+throughput: 1330.8 ops/s (total=26620)
+latency: avg=12.010324ms min=462.524µs max=93.344143ms
+get: ok=17189 miss=9431 err=0
+set: ok=0 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] load balancer restart with LB_READ_FROM_REPLICAS=true (rep 2)
+[harness] client run 'reads-with-replicas-rep2': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -read 1.0
+elapsed: 20.032771363s
+throughput: 1416.6 ops/s (total=28378)
+latency: avg=11.282596ms min=386.808µs max=85.136058ms
+get: ok=18093 miss=10285 err=0
+set: ok=0 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] load balancer restart with LB_READ_FROM_REPLICAS=false (rep 3)
+[harness] client run 'reads-master-only-rep3': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -read 1.0
+elapsed: 20.006302395s
+throughput: 1397.9 ops/s (total=27966)
+latency: avg=11.434596ms min=443.786µs max=89.435666ms
+get: ok=17792 miss=10174 err=0
+set: ok=0 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+[harness] load balancer restart with LB_READ_FROM_REPLICAS=true (rep 3)
+[harness] client run 'reads-with-replicas-rep3': -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -read 1.0
+elapsed: 20.007040408s
+throughput: 1387.2 ops/s (total=27753)
+latency: avg=11.520954ms min=513.309µs max=88.111068ms
+get: ok=17756 miss=9997 err=0
+set: ok=0 err=0
+delete: ok=0 err=0
+errors: 0  aborted_at_shutdown: 0
+--- kvdb-controller ---
+cpu.max: 100000 100000
+memory.max: 268435456
+usage_usec 1721376
+nr_periods 240
+nr_throttled 0
+throttled_usec 0
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode1 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 30318246
+nr_periods 1327
+nr_throttled 55
+throttled_usec 6675712
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode2 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 20290418
+nr_periods 1311
+nr_throttled 3
+throttled_usec 126502
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode3 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 29371694
+nr_periods 1311
+nr_throttled 54
+throttled_usec 7250590
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-loadbalancer ---
+cpu.max: 100000 100000
+memory.max: 268435456
+usage_usec 20146282
+nr_periods 212
+nr_throttled 200
+throttled_usec 49223909
+nproc (what Go uses for GOMAXPROCS): 12

@@ -1,0 +1,15 @@
+--- 1 node ---
+num_partitions=16 version=1 reshard=stable
+masters : {'dbnode1:8001': 16}
+replicas: {}
+
+--- 2 nodes ---
+num_partitions=16 version=10 reshard=stable
+masters : {'dbnode1:8001': 8, 'dbnode2:8002': 8}
+replicas: {'dbnode1:8001': 8, 'dbnode2:8002': 8}
+
+--- 4 nodes ---
+num_partitions=16 version=21 reshard=stable
+masters : {'dbnode1:8001': 4, 'dbnode2:8002': 4, 'dbnode3:8003': 4, 'dbnode4:8004': 4}
+replicas: {'dbnode1:8001': 7, 'dbnode2:8002': 9}
+

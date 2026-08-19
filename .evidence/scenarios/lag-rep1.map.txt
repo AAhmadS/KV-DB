@@ -1,0 +1,5 @@
+--- 3 nodes, replication factor 2 ---
+num_partitions=16 version=16 reshard=stable
+masters : {'dbnode1:8001': 6, 'dbnode2:8002': 5, 'dbnode3:8003': 5}
+replicas: {'dbnode1:8001': 8, 'dbnode3:8003': 8}
+

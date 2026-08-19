@@ -1,0 +1,9 @@
+=== restart dbnode1 at 07:12:32 ===
+ Container kvdb-dbnode1 Restarting 
+ Container kvdb-dbnode1 Started 
+=== restart dbnode2 at 07:12:53 ===
+ Container kvdb-dbnode2 Restarting 
+ Container kvdb-dbnode2 Started 
+=== restart dbnode3 at 07:13:15 ===
+ Container kvdb-dbnode3 Restarting 
+ Container kvdb-dbnode3 Started 

@@ -1,0 +1,2 @@
+wrote 60 known keys before the reshard
+after the reshard: missing=0 wrong=0 of 60

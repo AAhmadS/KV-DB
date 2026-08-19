@@ -1,0 +1,27 @@
+[harness] tearing the stack down (including volumes)
+[harness] starting load, then stopping dbnode2 mid-run
+[harness] client run 'during-failover': -addr http://loadbalancer:8080 -duration 40s -concurrency 8 -keyspace 2000 -read 0.5
+[harness] dbnode2 stopped; watching the map converge
+elapsed: 40.029880482s
+throughput: 732.0 ops/s (total=29300)
+latency: avg=10.918353ms min=433.785µs max=5.001886616s
+get: ok=12716 miss=1994 err=11
+set: ok=14566 err=13
+delete: ok=0 err=0
+errors: 24  aborted_at_shutdown: 0
+--- non-2xx only ---
+status codes returned by the load balancer on /kv/, per second
+07:11:19 502 24
+07:11:24 502 8
+07:11:29 502 8
+07:11:34 502 8
+=== Set/Get/Delete through the load balancer ===
+$ curl -X PUT http://localhost:8080/kv/smoke-key -d 'hello'
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key
+{"key":"smoke-key","value":"aGVsbG8=","version":10498}
+
+$ curl -X DELETE http://localhost:8080/kv/smoke-key
+HTTP/1.1 200 OK
+$ curl http://localhost:8080/kv/smoke-key   (expect 404)
+HTTP/1.1 404 Not Found

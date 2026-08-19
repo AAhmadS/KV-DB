@@ -1,0 +1,14 @@
+ Container kvdb-dbnode2 Running 
+ Container kvdb-dbnode3 Running 
+ Container kvdb-controller Running 
+ Container kvdb-loadbalancer Running 
+ Container kvdb-dbnode1 Running 
+ Container kvdb-controller Waiting 
+ Container kvdb-controller Waiting 
+ Container kvdb-controller Waiting 
+ Container kvdb-controller Waiting 
+ Container kvdb-controller Healthy 
+ Container kvdb-controller Healthy 
+ Container kvdb-controller Healthy 
+ Container kvdb-controller Healthy 
+EXIT=0

@@ -1,0 +1,25 @@
+--- replication factor 2 (compose default) ---
+num_partitions=16 version=16 reshard=stable
+masters : {'dbnode1:8001': 5, 'dbnode2:8002': 6, 'dbnode3:8003': 5}
+replicas: {'dbnode2:8002': 8, 'dbnode3:8003': 8}
+
+--- replication factor 3 ---
+num_partitions=16 version=17 reshard=stable
+masters : {'dbnode1:8001': 5, 'dbnode2:8002': 6, 'dbnode3:8003': 5}
+replicas: {'dbnode1:8001': 11, 'dbnode2:8002': 10, 'dbnode3:8003': 11}
+
+--- replication factor 1 ---
+num_partitions=16 version=18 reshard=stable
+masters : {'dbnode1:8001': 5, 'dbnode2:8002': 6, 'dbnode3:8003': 5}
+replicas: {}
+
+--- replication factor 2 ---
+num_partitions=16 version=19 reshard=stable
+masters : {'dbnode1:8001': 5, 'dbnode2:8002': 6, 'dbnode3:8003': 5}
+replicas: {'dbnode1:8001': 5, 'dbnode2:8002': 5, 'dbnode3:8003': 6}
+
+--- after killing dbnode3 ---
+num_partitions=16 version=24 reshard=stable
+masters : {'dbnode1:8001': 8, 'dbnode2:8002': 8}
+replicas: {'dbnode1:8001': 2, 'dbnode2:8002': 3}
+

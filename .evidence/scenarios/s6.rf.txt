@@ -1,0 +1,38 @@
+=== POST /replication/factor {"replication_factor": 3} ===
+HTTP/1.1 200 OK
+Content-Length: 52
+Connection: keep-alive
+Content-Type: application/json
+Date: Wed, 19 Aug 2026 07:25:12 GMT
+Keep-Alive: timeout=60
+Proxy-Connection: keep-alive
+
+{"replication_factor":3,"status":"ok","version":17}
+
+=== POST /replication/factor {"replication_factor": 1} ===
+HTTP/1.1 200 OK
+Content-Length: 52
+Connection: keep-alive
+Content-Type: application/json
+Date: Wed, 19 Aug 2026 07:25:18 GMT
+Keep-Alive: timeout=60
+Proxy-Connection: keep-alive
+
+{"replication_factor":1,"status":"ok","version":18}
+
+=== POST /replication/factor {"replication_factor": 2} ===
+HTTP/1.1 200 OK
+Content-Length: 52
+Connection: keep-alive
+Content-Type: application/json
+Date: Wed, 19 Aug 2026 07:25:23 GMT
+Keep-Alive: timeout=60
+Proxy-Connection: keep-alive
+
+{"replication_factor":2,"status":"ok","version":19}
+
+=== stopping dbnode3 ===
+ Container kvdb-dbnode3 Stopping 
+ Container kvdb-dbnode3 Stopped 
+pass 1 (t+12s, inside the failover window): missing=1 wrong=0 of 40 -> rf-2:200
+pass 2 (t+32s, after convergence): missing=0 wrong=0 of 40

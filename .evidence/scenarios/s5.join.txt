@@ -1,0 +1,10 @@
+JOINED AT: 07:14:08
+ Volume kv-db_dbnode3-data Creating 
+ Volume kv-db_dbnode3-data Created 
+ Container kvdb-controller Running 
+ Container kvdb-dbnode3 Creating 
+ Container kvdb-dbnode3 Created 
+ Container kvdb-controller Waiting 
+ Container kvdb-controller Healthy 
+ Container kvdb-dbnode3 Starting 
+ Container kvdb-dbnode3 Started 

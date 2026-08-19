@@ -1,0 +1,5 @@
+--- one node ---
+num_partitions=16 version=1 reshard=stable
+masters : {'dbnode1:8001': 16}
+replicas: {}
+

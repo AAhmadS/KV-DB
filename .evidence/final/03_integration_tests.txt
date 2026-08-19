@@ -1,0 +1,2 @@
+ok  	github.com/kvdb/kvdb/test	19.209s
+EXIT=0

@@ -1,0 +1,251 @@
+networks:
+  kvdb-net:
+    driver: bridge
+
+volumes:
+  dbnode1-data:
+  dbnode2-data:
+  dbnode3-data:
+  dbnode4-data:
+
+services:
+  controller:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPONENT: controller
+    container_name: kvdb-controller
+    ports:
+      - "8000:8000"
+    environment:
+      - CONTROLLER_PORT=8000
+      - CONTROLLER_HEARTBEAT_INTERVAL=5s
+      - CONTROLLER_HEARTBEAT_TIMEOUT=15s
+      - CONTROLLER_REPLICATION_FACTOR=2
+      - CONTROLLER_NUM_PARTITIONS=16
+      - CONTROLLER_ADVERTISE_URL=http://controller:8000
+    networks:
+      - kvdb-net
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  loadbalancer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPONENT: loadbalancer
+    container_name: kvdb-loadbalancer
+    ports:
+      - "8080:8080"
+    environment:
+      - LB_PORT=8080
+      - LB_CONTROLLER_URL=http://controller:8000
+      - LB_TOPOLOGY_REFRESH=5s
+      - LB_CONNECTION_POOL_SIZE=10
+      # Off by default so a Get always sees the latest acknowledged Set.
+      # Set LB_READ_FROM_REPLICAS=true in the environment to spread reads over
+      # the replicas as well; spec section 2.3 permits either strategy.
+      - LB_READ_FROM_REPLICAS=${LB_READ_FROM_REPLICAS:-false}
+    networks:
+      - kvdb-net
+    depends_on:
+      controller:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  dbnode1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPONENT: dbnode
+    container_name: kvdb-dbnode1
+    ports:
+      - "8001:8001"
+      - "9001:9001"
+    environment:
+      - NODE_ID=1
+      - NODE_ADVERTISE_ADDR=dbnode1
+      - NODE_PORT=8001
+      - NODE_REPLICATION_PORT=9001
+      - NODE_CONTROLLER_URL=http://controller:8000
+      - NODE_DATA_DIR=/data
+      - NODE_WAL_SYNC_MODE=async
+      - NODE_SNAPSHOT_INTERVAL=5m
+    volumes:
+      - dbnode1-data:/data
+    networks:
+      - kvdb-net
+    depends_on:
+      controller:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  dbnode2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPONENT: dbnode
+    container_name: kvdb-dbnode2
+    ports:
+      - "8002:8002"
+      - "9002:9002"
+    environment:
+      - NODE_ID=2
+      - NODE_ADVERTISE_ADDR=dbnode2
+      - NODE_PORT=8002
+      - NODE_REPLICATION_PORT=9002
+      - NODE_CONTROLLER_URL=http://controller:8000
+      - NODE_DATA_DIR=/data
+      - NODE_WAL_SYNC_MODE=async
+      - NODE_SNAPSHOT_INTERVAL=5m
+    volumes:
+      - dbnode2-data:/data
+    networks:
+      - kvdb-net
+    depends_on:
+      controller:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8002/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  dbnode3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPONENT: dbnode
+    container_name: kvdb-dbnode3
+    ports:
+      - "8003:8003"
+      - "9003:9003"
+    environment:
+      - NODE_ID=3
+      - NODE_ADVERTISE_ADDR=dbnode3
+      - NODE_PORT=8003
+      - NODE_REPLICATION_PORT=9003
+      - NODE_CONTROLLER_URL=http://controller:8000
+      - NODE_DATA_DIR=/data
+      - NODE_WAL_SYNC_MODE=async
+      - NODE_SNAPSHOT_INTERVAL=5m
+    volumes:
+      - dbnode3-data:/data
+    networks:
+      - kvdb-net
+    depends_on:
+      controller:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8003/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  dbnode4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPONENT: dbnode
+    container_name: kvdb-dbnode4
+    ports:
+      - "8004:8004"
+      - "9004:9004"
+    environment:
+      - NODE_ID=4
+      - NODE_ADVERTISE_ADDR=dbnode4
+      - NODE_PORT=8004
+      - NODE_REPLICATION_PORT=9004
+      - NODE_CONTROLLER_URL=http://controller:8000
+      - NODE_DATA_DIR=/data
+      - NODE_WAL_SYNC_MODE=async
+      - NODE_SNAPSHOT_INTERVAL=5m
+    volumes:
+      - dbnode4-data:/data
+    networks:
+      - kvdb-net
+    profiles:
+      - demo
+    depends_on:
+      controller:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8004/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPONENT: client
+    command: [
+      "-addr", "http://loadbalancer:8080",
+      "-duration", "30s",
+      "-concurrency", "8",
+      "-keyspace", "1000",
+      "-value-bytes", "128",
+      "-read", "0.5",
+      "-delete", "0.1"
+    ]
+    networks:
+      - kvdb-net
+    profiles:
+      - demo
+    depends_on:
+      loadbalancer:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M

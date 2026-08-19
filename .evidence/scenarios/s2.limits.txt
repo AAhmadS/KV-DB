@@ -1,0 +1,65 @@
+$ docker inspect --format '{{.Name}} NanoCpus={{.HostConfig.NanoCpus}} Memory={{.HostConfig.Memory}}' <containers>
+/kvdb-controller NanoCpus=1000000000 Memory=268435456
+/kvdb-loadbalancer NanoCpus=1000000000 Memory=268435456
+/kvdb-dbnode1 NanoCpus=1000000000 Memory=536870912
+/kvdb-dbnode2 NanoCpus=1000000000 Memory=536870912
+/kvdb-dbnode3 NanoCpus=1000000000 Memory=536870912
+/kvdb-dbnode4 NanoCpus=1000000000 Memory=536870912
+$ docker inspect --format '{{.Name}} NanoCpus={{.HostConfig.NanoCpus}} Memory={{.HostConfig.Memory}}'
+/kvdb-controller NanoCpus=1000000000 Memory=268435456
+/kvdb-dbnode1 NanoCpus=1000000000 Memory=536870912
+/kvdb-dbnode2 NanoCpus=1000000000 Memory=536870912
+/kvdb-dbnode3 NanoCpus=1000000000 Memory=536870912
+/kvdb-dbnode4 NanoCpus=1000000000 Memory=536870912
+/kvdb-loadbalancer NanoCpus=1000000000 Memory=268435456
+
+=== cgroup limits and CPU throttling, read inside each container ===
+(cpu.max is 'quota period' in microseconds: 100000 100000 == exactly 1.0 CPU)
+--- kvdb-controller ---
+cpu.max: 100000 100000
+memory.max: 268435456
+usage_usec 6605186
+nr_periods 1722
+nr_throttled 0
+throttled_usec 0
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode1 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 141999650
+nr_periods 2339
+nr_throttled 309
+throttled_usec 69813417
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode2 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 118427073
+nr_periods 1688
+nr_throttled 281
+throttled_usec 60990083
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode3 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 35571063
+nr_periods 986
+nr_throttled 1
+throttled_usec 1095
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-dbnode4 ---
+cpu.max: 100000 100000
+memory.max: 536870912
+usage_usec 38001537
+nr_periods 990
+nr_throttled 2
+throttled_usec 90500
+nproc (what Go uses for GOMAXPROCS): 12
+--- kvdb-loadbalancer ---
+cpu.max: 100000 100000
+memory.max: 268435456
+usage_usec 218869932
+nr_periods 2316
+nr_throttled 2088
+throttled_usec 382050367
+nproc (what Go uses for GOMAXPROCS): 12
