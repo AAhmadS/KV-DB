@@ -1,0 +1,2 @@
+resolve_evidence: 12 claim(s) resolved. No unresolved claims.
+RESOLVER_EXIT=0

@@ -1,0 +1,9 @@
+$ docker images --format '{{.Repository}}:{{.Tag}} {{.ID}} {{.CreatedAt}}' | grep '^kv-db' | sort
+kv-db-client:latest de4047add384 2026-08-19 05:05:10 +0000 UTC
+kv-db-controller:latest 4b629f28e485 2026-08-19 06:34:23 +0000 UTC
+kv-db-dbnode1:latest 83d67778aa69 2026-08-19 04:27:12 +0000 UTC
+kv-db-dbnode2:latest 0efc74c402ee 2026-08-19 04:27:12 +0000 UTC
+kv-db-dbnode3:latest b82206aecf3e 2026-08-19 04:27:12 +0000 UTC
+kv-db-dbnode4:latest c40a35b9e94e 2026-08-19 04:27:12 +0000 UTC
+kv-db-loadbalancer:latest 86573542719a 2026-08-19 06:08:00 +0000 UTC
+EXIT=0

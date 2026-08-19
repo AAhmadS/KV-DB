@@ -20,11 +20,24 @@ bash scripts/sweep.sh                    # s1 s2 s2b s3 s4 s5 s6 reshard lag, in
 
 `scripts/sweep.sh` records the image IDs and the exit code of each scenario in
 `.evidence/scenarios/sweep-summary.txt`. That file is the provenance for
-everything here — one sweep, one set of images:
+everything here — one sweep, one set of images.
+
+The 12-hex-digit strings below are **Docker image IDs** (`docker images
+--format '{{.ID}}'`), not git commit hashes. This repository's history begins
+with the commit that contains these documents, so no measurement here can be
+attributed to a commit; the images are the only build identity there is. They
+were re-resolved against the live Docker daemon after the fact and match exactly
+— `.evidence/final/08_docker_image_ids.txt`.
+
+Because of these strings, `resolve_evidence.py` exits 1 on this file and reports
+them as unresolved commits. That is expected and is explained in full under
+"Evidence resolver" in `STATUS.md`: the checker matches any lowercase-hex token
+of 7–40 characters and has no way to be told that one is an image ID or a
+checksum. The strings are correct and were left as they are.
 
 ```
 sweep started: 2026-08-19T07:01:59Z
-images:
+images (docker image IDs):
 kv-db-client:latest de4047add384 2026-08-19 05:05:10 +0000 UTC
 kv-db-controller:latest 4b629f28e485 2026-08-19 06:34:23 +0000 UTC
 kv-db-dbnode1:latest 83d67778aa69 2026-08-19 04:27:12 +0000 UTC
@@ -690,8 +703,9 @@ does not overwrite. The queue depths are the maximum sample in the named file.
 **The sweep run's queue file no longer exists.** `scenario.sh` clears
 `$EVIDENCE/$SCENARIO.*` when a scenario is dispatched, so the third repeat
 rewrote `lag.repl-lag-under-write-load.txt` — it is now byte-identical to
-`lag-rep3.queue.txt` (same 07:31:42–07:32:59 series; `md5sum` on both gives
-`a9f4e83b8b2245447a7d19702db68094`, and `diff` exits 0). A peak depth for the
+`lag-rep3.queue.txt`: same 07:31:42–07:32:59 series, `diff` between them exits 0,
+and `md5sum` gives the same MD5 checksum — not a commit hash — for both
+(`a9f4e83b8b2245447a7d19702db68094`). A peak depth for the
 sweep run therefore cannot be resolved against any
 file on disk, and none is claimed here. Only its throughput (848.9 ops/s, from
 `console-lag.txt`) survives.

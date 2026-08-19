@@ -1,0 +1,5 @@
+STATUS.md -> EXIT=0 : resolve_evidence: 12 claim(s) resolved. No unresolved claims.
+DEFENSE.md -> EXIT=0 : resolve_evidence: 14 claim(s) resolved. No unresolved claims.
+ANALYSIS.md -> EXIT=1 : resolve_evidence: 8 UNRESOLVED CLAIM(S) out of 14 checked
+ARCHITECTURE.md -> EXIT=0 : resolve_evidence: 16 claim(s) resolved. No unresolved claims.
+README.md -> EXIT=0 : resolve_evidence: 2 claim(s) resolved. No unresolved claims.
