@@ -1,0 +1,11 @@
+$ curl -i -X PUT http://localhost:8080/kv/defense-smoke -d 'ok'
+HTTP 200
+$ curl http://localhost:8080/kv/defense-smoke
+{"key":"defense-smoke","value":"b2s=","version":1}
+
+HTTP 200
+$ curl -X DELETE http://localhost:8080/kv/defense-smoke
+HTTP 200
+$ curl http://localhost:8080/kv/defense-smoke   # expect 404
+HTTP 404
+EXIT=0

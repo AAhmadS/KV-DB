@@ -117,6 +117,7 @@ what `docker-compose.yml` sets, where it differs.
 | `CONTROLLER_ADVERTISE_URL` | controller | `http://127.0.0.1:8000` | service name | the URL nodes call back on during a re-shard |
 | `NODE_PORT` / `NODE_REPLICATION_PORT` | dbnode | 8001 / 9001 | per node | listen ports |
 | `NODE_CONTROLLER_URL` | dbnode | `http://controller:8000` | same | where to register |
+| `NODE_ADVERTISE_ADDR` | dbnode | the container hostname, else `127.0.0.1` | service name | the host other cluster members use to reach this node (`cmd/dbnode/main.go:63`) |
 | `NODE_DATA_DIR` | dbnode | `/data` | volume | **has no effect** — nodes are in-memory; see STATUS.md |
 | `LB_PORT` | load balancer | 8080 | 8080 | listen port |
 | `LB_CONTROLLER_URL` | load balancer | `http://controller:8000` | same | where to fetch `/map` |
