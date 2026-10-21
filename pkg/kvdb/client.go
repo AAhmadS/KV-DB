@@ -12,6 +12,7 @@ import (
 	"net"
 	"net/http"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -76,7 +77,10 @@ type Client struct {
 	baseURL     string
 	httpClient  *http.Client
 	retryConfig RetryConfig
-	rng         *rand.Rand
+	// rngMu guards rng: math/rand.Rand is not safe for concurrent use and
+	// one Client is routinely shared by dozens of load-test goroutines.
+	rngMu sync.Mutex
+	rng   *rand.Rand
 }
 
 func drainAndCloseResponse(resp *http.Response) {
@@ -369,7 +373,10 @@ func (c *Client) calculateBackoff(attempt int, cfg RetryConfig) time.Duration {
 
 	// Add jitter
 	if cfg.JitterFraction > 0 {
-		jitter := backoff * cfg.JitterFraction * (c.rng.Float64()*2 - 1)
+		c.rngMu.Lock()
+		roll := c.rng.Float64()
+		c.rngMu.Unlock()
+		jitter := backoff * cfg.JitterFraction * (roll*2 - 1)
 		backoff += jitter
 	}
 
@@ -559,6 +566,13 @@ func (c *Client) GetWithStats(ctx context.Context, key string) ([]byte, RetrySta
 		return nil
 	})
 	return result, stats, err
+}
+
+// DeleteWithStats performs a Delete operation and returns retry statistics.
+func (c *Client) DeleteWithStats(ctx context.Context, key string) (RetryStats, error) {
+	return c.doWithRetryStats(ctx, "Delete", func(ctx context.Context) error {
+		return c.doDelete(ctx, key)
+	})
 }
 
 // doWithRetryStats is like doWithRetry but also returns statistics.

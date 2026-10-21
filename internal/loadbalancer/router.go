@@ -285,6 +285,7 @@ func (r *Router) routeWithRetry(ctx context.Context, key string, isWrite bool, d
 	for attempt := 0; attempt <= r.maxRetries; attempt++ {
 		if attempt > 0 {
 			log.Printf("[router] retrying request for key=%s (attempt %d)", key, attempt+1)
+			log.Printf("[LB-RETRY] key=%s attempt=%d refreshing topology", key, attempt+1)
 			if err := r.topology.ForceRefresh(); err != nil {
 				log.Printf("[router] topology refresh failed: %v", err)
 			}

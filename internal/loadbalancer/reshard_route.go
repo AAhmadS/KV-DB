@@ -60,15 +60,9 @@ func (d RouteDecision) String() string {
 type ReshardRouteDecider func(key string, cm *ClusterMap, isWrite bool) RouteDecision
 
 // DecideRouteForKey chooses which partitioning formula applies to one key while
-// a re-shard is in flight.
-//
-// ===========================================================================
-// TODO(sam): implement this. It is deliberately left empty.
-//
-// Everything around it is finished: the controller publishes range states, the
-// nodes implement the freeze/handoff/announce protocol, the router calls this
-// function and acts on all four results, and the tests below exercise it.
-// Filling in this body is the whole remaining task.
+// a re-shard is in flight. Implemented: the three cases below; the surrounding
+// machinery (controller range states, node freeze/handoff/announce, router
+// acting on all four results) was already finished.
 //
 //	Inputs
 //	  key      the key being read or written
@@ -112,10 +106,32 @@ type ReshardRouteDecider func(key string, cm *ClusterMap, isWrite bool) RouteDec
 // Returning RouteUnimplemented keeps the legacy fallback active, which probes
 // the new owner and then the old owner. That fallback is safe for reads and
 // NOT safe for writes - it can write to a node that is about to be overwritten
-// by the final drain - which is precisely why this function exists.
+// by the final drain - which is precisely why this function exists. It is now
+// only returned if a custom decider is installed that yields it.
 // ===========================================================================
 func DecideRouteForKey(key string, cm *ClusterMap, isWrite bool) RouteDecision {
-	return RouteUnimplemented
+	// No re-shard in flight: the old (only) formula is authoritative.
+	if cm == nil || (cm.NextNumPartitions <= 0 && len(cm.NextPartitions) == 0) {
+		return RouteOld
+	}
+
+	switch cm.RangeStateFor(cm.NewPartitionFor(key)) {
+	case RangeDone:
+		// New master announced it applied everything: new formula.
+		return RouteNew
+	case RangeHandoff:
+		// Old master frozen, new master not ready yet. Writes must wait
+		// (the caller's retry loop + client backoff cover the window);
+		// reads are still safe from the frozen old copy.
+		if isWrite {
+			return RouteHandoff
+		}
+		return RouteOld
+	default:
+		// Pending or transferring: the old master still accepts writes,
+		// so its copy is the only authoritative one. Old formula.
+		return RouteOld
+	}
 }
 
 // --- inputs to the decision -------------------------------------------------

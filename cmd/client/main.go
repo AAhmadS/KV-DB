@@ -65,6 +65,65 @@ type counters struct {
 	latencyTotalNs uint64
 	latencyMinNs   uint64
 	latencyMaxNs   uint64
+	// retries counts extra attempts beyond the first (sum of Attempts-1
+	// over all operations, via the SDK *WithStats variants).
+	retries uint64
+	// latBuckets is a lock-free latency histogram; bucket i counts
+	// operations with latency <= latBucketBounds[i].
+	latBuckets [numLatBuckets]uint64
+}
+
+// latBucketBounds are latency histogram upper bounds. Percentiles derived
+// from them are approximate (reported as ~=) but exact enough to see
+// failover windows and tail-latency regressions.
+var latBucketBounds = [...]time.Duration{
+	100 * time.Microsecond,
+	500 * time.Microsecond,
+	1 * time.Millisecond,
+	5 * time.Millisecond,
+	10 * time.Millisecond,
+	50 * time.Millisecond,
+	100 * time.Millisecond,
+	500 * time.Millisecond,
+	1 * time.Second,
+	5 * time.Second,
+}
+
+const numLatBuckets = len(latBucketBounds) + 1 // last bucket is +Inf
+
+func recordLatency(s *counters, lat time.Duration) {
+	ns := uint64(lat.Nanoseconds())
+	atomic.AddUint64(&s.latencyTotalNs, ns)
+	atomicMin(&s.latencyMinNs, ns)
+	atomicMax(&s.latencyMaxNs, ns)
+	b := 0
+	for b < len(latBucketBounds) && lat > latBucketBounds[b] {
+		b++
+	}
+	atomic.AddUint64(&s.latBuckets[b], 1)
+}
+
+// latencyQuantile returns the approximate q-quantile (0<q<1) latency from
+// the histogram: the upper bound of the first bucket holding the rank.
+func latencyQuantile(s *counters, done uint64, q float64) time.Duration {
+	if done == 0 {
+		return 0
+	}
+	rank := uint64(q * float64(done))
+	if rank < 1 {
+		rank = 1
+	}
+	var cum uint64
+	for b := 0; b < numLatBuckets; b++ {
+		cum += atomic.LoadUint64(&s.latBuckets[b])
+		if cum >= rank {
+			if b < len(latBucketBounds) {
+				return latBucketBounds[b]
+			}
+			return -1 // above the top bucket
+		}
+	}
+	return -1
 }
 
 func main() {
@@ -212,6 +271,13 @@ func validateConfig(cfg config) error {
 	return nil
 }
 
+// getWithStats adapts Client.GetWithStats to the worker loop's
+// (value, error, stats) shape; the value is classified by the caller.
+func getWithStats(client *kvdb.Client, ctx context.Context, key string) ([]byte, error, kvdb.RetryStats) {
+	v, st, err := client.GetWithStats(ctx, key)
+	return v, err, st
+}
+
 func workerRun(rootCtx context.Context, workerID int, cfg config, client *kvdb.Client, stats *counters, stopAt time.Time) {
 	rng := mrand.New(mrand.NewSource(cfg.seed + int64(workerID)*1000003))
 	value := make([]byte, cfg.valueBytes)
@@ -243,9 +309,12 @@ func workerRun(rootCtx context.Context, workerID int, cfg config, client *kvdb.C
 		opCtx, cancel := context.WithTimeout(rootCtx, cfg.opTimeout)
 		start := time.Now()
 		var err error
+		var rs kvdb.RetryStats
 		switch op {
 		case opGet:
-			_, err = client.Get(opCtx, key)
+			var st kvdb.RetryStats
+			_, err, st = getWithStats(client, opCtx, key)
+			rs = st
 			switch {
 			case err == nil:
 				atomic.AddUint64(&stats.getOK, 1)
@@ -258,7 +327,7 @@ func workerRun(rootCtx context.Context, workerID int, cfg config, client *kvdb.C
 				atomic.AddUint64(&stats.getErr, 1)
 			}
 		case opDelete:
-			err = client.Delete(opCtx, key)
+			rs, err = client.DeleteWithStats(opCtx, key)
 			switch {
 			case err == nil:
 				atomic.AddUint64(&stats.deleteOK, 1)
@@ -268,7 +337,7 @@ func workerRun(rootCtx context.Context, workerID int, cfg config, client *kvdb.C
 				atomic.AddUint64(&stats.deleteErr, 1)
 			}
 		default:
-			err = client.Set(opCtx, key, value)
+			rs, err = client.SetWithStats(opCtx, key, value)
 			switch {
 			case err == nil:
 				atomic.AddUint64(&stats.setOK, 1)
@@ -280,10 +349,10 @@ func workerRun(rootCtx context.Context, workerID int, cfg config, client *kvdb.C
 		}
 		cancel()
 
-		lat := uint64(time.Since(start).Nanoseconds())
-		atomic.AddUint64(&stats.latencyTotalNs, lat)
-		atomicMin(&stats.latencyMinNs, lat)
-		atomicMax(&stats.latencyMaxNs, lat)
+		if rs.Attempts > 0 {
+			atomic.AddUint64(&stats.retries, uint64(rs.Attempts-1))
+		}
+		recordLatency(stats, time.Since(start))
 
 		_ = err // errors are reflected in counters; keep loop hot.
 		atomic.AddUint64(&stats.done, 1)
@@ -370,6 +439,9 @@ func printSummary(cfg config, s *counters, elapsed time.Duration) {
 	delOK := atomic.LoadUint64(&s.deleteOK)
 	delErr := atomic.LoadUint64(&s.deleteErr)
 	aborted := atomic.LoadUint64(&s.aborted)
+	retries := atomic.LoadUint64(&s.retries)
+	p50 := latencyQuantile(s, done, 0.50)
+	p99 := latencyQuantile(s, done, 0.99)
 
 	fmt.Printf("addr: %s\n", cfg.loadBalancerURL)
 	if cfg.duration > 0 {
@@ -381,9 +453,18 @@ func printSummary(cfg config, s *counters, elapsed time.Duration) {
 	fmt.Printf("keys: %d value_bytes: %d\n", cfg.keyspace, cfg.valueBytes)
 	fmt.Printf("elapsed: %v\n", elapsed)
 	fmt.Printf("throughput: %.1f ops/s (total=%d)\n", opsPerSec, done)
-	fmt.Printf("latency: avg=%v min=%v max=%v\n", avgLat, minLat, maxLat)
+	fmt.Printf("latency: avg=%v min=%v max=%v p50~=%v p99~=%v\n", avgLat, minLat, maxLat, quantStr(p50), quantStr(p99))
+	fmt.Printf("retries: %d (client backoff retries beyond first attempt)\n", retries)
 	fmt.Printf("get: ok=%d miss=%d err=%d\n", getOK, getMiss, getErr)
 	fmt.Printf("set: ok=%d err=%d\n", setOK, setErr)
 	fmt.Printf("delete: ok=%d err=%d\n", delOK, delErr)
 	fmt.Printf("errors: %d  aborted_at_shutdown: %d\n", getErr+setErr+delErr, aborted)
+}
+
+// quantStr renders a histogram quantile for the summary line.
+func quantStr(d time.Duration) string {
+	if d < 0 {
+		return ">5s"
+	}
+	return d.String()
 }
