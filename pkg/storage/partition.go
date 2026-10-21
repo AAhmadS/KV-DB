@@ -14,8 +14,8 @@
 //   - ImmutableMemTables:   slice of frozen read-only maps, oldest first.
 //   - WAL:                  in-memory slice []LogEntry, LSNs 1,2,3,...
 //   - CheckpointLSN:        LSN watermarks – everything <= CheckpointLSN is
-//                            captured in ImmutableMemTables; everything after
-//                            is catch-up tail for replicas.
+//     captured in ImmutableMemTables; everything after
+//     is catch-up tail for replicas.
 //
 // Tombstones: Delete() writes Entry{Deleted:true} into ActiveMemTable so a
 // Get() never resurrects an older value from an immutable layer. Compaction
@@ -103,11 +103,11 @@ func NewPartition(id int, role Role, flushThreshold int) *Partition {
 		flushThreshold = DefaultFlushThreshold
 	}
 	return &Partition{
-		ID:               id,
-		Role:             role,
-		ActiveMemTable:   make(map[string]Entry),
-		flushThreshold:   flushThreshold,
-		nextLSN:          1,
+		ID:             id,
+		Role:           role,
+		ActiveMemTable: make(map[string]Entry),
+		flushThreshold: flushThreshold,
+		nextLSN:        1,
 	}
 }
 

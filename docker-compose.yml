@@ -249,3 +249,29 @@ services:
         limits:
           cpus: "1.0"
           memory: 256M
+
+  scenarios:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        COMPONENT: scenarios
+    command: [
+      "-lb", "http://loadbalancer:8080",
+      "-controller", "http://controller:8000",
+      "-scenario", "all",
+      "-ops", "2000",
+      "-concurrency", "8"
+    ]
+    networks:
+      - kvdb-net
+    profiles:
+      - demo
+    depends_on:
+      loadbalancer:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256M
