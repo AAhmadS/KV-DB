@@ -66,6 +66,9 @@ func (f *FailoverManager) promoteReplicaForPartition(partitionID int, failedNode
 		return
 	}
 
+	log.Printf("[FAILOVER-PROMOTE] partition=%d newMaster=%d failedNode=%d",
+		partitionID, newMaster.ID, failedNodeID)
+
 	f.notifyNodeRoleChange(newMaster, partitionID, true)
 
 	for _, replicaID := range replicas {

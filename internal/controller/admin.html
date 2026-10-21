@@ -438,6 +438,24 @@
             </div>
         </div>
 
+        <div class="card" style="margin-top: 20px;">
+            <h2>Replication Factor</h2>
+            <div class="grid" style="grid-template-columns: 1fr 1fr auto; gap: 15px; align-items: end;">
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>Replicas per Partition</label>
+                    <input type="number" id="replication-factor" min="1" max="16" placeholder="e.g., 2">
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>Current</label>
+                    <div id="current-rf" style="padding: 8px 0; font-weight: bold;">-</div>
+                </div>
+                <div class="form-group" style="margin-bottom:0;">
+                    <label>&nbsp;</label>
+                    <button onclick="setReplicationFactor()">Apply</button>
+                </div>
+            </div>
+        </div>
+
         <footer>
             KV-DB Distributed Key-Value Store &bull; Admin Panel v1.0
         </footer>
@@ -565,6 +583,13 @@
                         <div class="master">M: ${p.master_id || '-'}</div>
                     </div>
                 `).join('');
+
+                try {
+                    const topo = await apiGet('/topology');
+                    if (topo && topo.replication_factor) {
+                        document.getElementById('current-rf').textContent = topo.replication_factor;
+                    }
+                } catch (_) { /* RF display is best-effort */ }
             } catch (err) {
                 showToast('Failed to load topology: ' + err.message, 'error');
             }
@@ -769,6 +794,30 @@
                 await refreshAll();
             } catch (err) {
                 showToast('Failed to move partition: ' + err.message, 'error');
+            }
+        }
+
+        // Set replication factor
+        async function setReplicationFactor() {
+            const input = document.getElementById('replication-factor');
+            const factor = parseInt(input.value);
+
+            if (!factor || factor < 1 || factor > 16) {
+                showToast('Please enter a valid replication factor (1-16)', 'error');
+                return;
+            }
+
+            if (!confirm(`Set replication factor to ${factor}? New replicas will snapshot-sync from masters.`)) {
+                return;
+            }
+
+            try {
+                await apiPost('/replication/factor', { replication_factor: factor });
+                showToast(`Replication factor set to ${factor}`, 'success');
+                input.value = '';
+                await refreshAll();
+            } catch (err) {
+                showToast('Failed to set replication factor: ' + err.message, 'error');
             }
         }
 

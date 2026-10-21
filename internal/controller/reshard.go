@@ -315,6 +315,8 @@ func (ro *ReshardOrchestrator) migrateRange(rng *MigrationRange, oldNumPartition
 	}
 
 	log.Printf("[reshard] range %d -> node %d: done", rng.NewPartitionID, targetNode.ID)
+	log.Printf("[RESHARD-MOVE] range=%d targetNode=%d oldPartitions=%v",
+		rng.NewPartitionID, targetNode.ID, rng.SourceParts)
 	return nil
 }
 
