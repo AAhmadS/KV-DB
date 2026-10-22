@@ -1,105 +1,175 @@
-2026-08-19T07:06:35Z
-kv-db-client-run-d74fe8c8e42f	41.65%	8.566MiB / 256MiB	3.35%
-kvdb-dbnode4	38.06%	19.83MiB / 512MiB	3.87%
-kvdb-dbnode3	37.09%	19.98MiB / 512MiB	3.90%
-kvdb-dbnode2	62.22%	57.89MiB / 512MiB	11.31%
-kvdb-loadbalancer	108.93%	11.23MiB / 256MiB	4.39%
-kvdb-dbnode1	60.77%	66.25MiB / 512MiB	12.94%
-kvdb-controller	3.73%	9.227MiB / 256MiB	3.60%
-baghboonvoiceagent-app-1	0.19%	50.21MiB / 7.46GiB	0.66%
-baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:13Z
+kv-db-client-run-9abc7dfbfc77	41.46%	9.191MiB / 256MiB	3.59%
+kvdb-dbnode4	44.91%	19.95MiB / 512MiB	3.90%
+kvdb-dbnode3	38.36%	20.15MiB / 512MiB	3.94%
+kvdb-dbnode2	65.67%	58.97MiB / 512MiB	11.52%
+kvdb-dbnode1	60.53%	61.22MiB / 512MiB	11.96%
+kvdb-loadbalancer	103.33%	14.22MiB / 256MiB	5.55%
+kvdb-controller	2.87%	8.586MiB / 256MiB	3.35%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.11%	162.3MiB / 7.462GiB	2.12%
+datanode1	0.26%	440.9MiB / 7.462GiB	5.77%
+datanode2	0.30%	456MiB / 7.462GiB	5.97%
+namenode2	0.82%	605.4MiB / 7.462GiB	7.92%
+namenode1	0.42%	595.2MiB / 7.462GiB	7.79%
+zookeeper	0.59%	133.5MiB / 7.462GiB	1.75%
+cf-chatbot-postgres-1	0.00%	37.08MiB / 7.462GiB	0.49%
+cf-chatbot-redis-1	6.48%	16.36MiB / 7.462GiB	0.21%
 
-2026-08-19T07:06:39Z
-kv-db-client-run-d74fe8c8e42f	41.48%	8.879MiB / 256MiB	3.47%
-kvdb-dbnode4	39.03%	20.6MiB / 512MiB	4.02%
-kvdb-dbnode3	38.35%	21.16MiB / 512MiB	4.13%
-kvdb-dbnode2	66.67%	60.34MiB / 512MiB	11.78%
-kvdb-loadbalancer	101.95%	11.31MiB / 256MiB	4.42%
-kvdb-dbnode1	58.20%	66.62MiB / 512MiB	13.01%
-kvdb-controller	7.42%	8.711MiB / 256MiB	3.40%
-baghboonvoiceagent-app-1	8.57%	50.21MiB / 7.46GiB	0.66%
-baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:18Z
+kv-db-client-run-9abc7dfbfc77	38.82%	8.406MiB / 256MiB	3.28%
+kvdb-dbnode4	41.34%	19.59MiB / 512MiB	3.83%
+kvdb-dbnode3	35.07%	20.39MiB / 512MiB	3.98%
+kvdb-dbnode2	61.14%	59.14MiB / 512MiB	11.55%
+kvdb-dbnode1	70.30%	61.31MiB / 512MiB	11.98%
+kvdb-loadbalancer	100.15%	11.79MiB / 256MiB	4.61%
+kvdb-controller	5.83%	7.75MiB / 256MiB	3.03%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.21%	162.3MiB / 7.462GiB	2.12%
+datanode1	0.53%	440.9MiB / 7.462GiB	5.77%
+datanode2	0.43%	456MiB / 7.462GiB	5.97%
+namenode2	0.53%	605.4MiB / 7.462GiB	7.92%
+namenode1	0.52%	595.2MiB / 7.462GiB	7.79%
+zookeeper	0.31%	133.5MiB / 7.462GiB	1.75%
+cf-chatbot-postgres-1	0.00%	37.08MiB / 7.462GiB	0.49%
+cf-chatbot-redis-1	12.25%	16.37MiB / 7.462GiB	0.21%
 
-2026-08-19T07:06:44Z
-kv-db-client-run-d74fe8c8e42f	38.36%	9.867MiB / 256MiB	3.85%
-kvdb-dbnode4	40.51%	21.82MiB / 512MiB	4.26%
-kvdb-dbnode3	34.47%	20.24MiB / 512MiB	3.95%
-kvdb-dbnode2	67.77%	60.98MiB / 512MiB	11.91%
-kvdb-loadbalancer	105.40%	10.97MiB / 256MiB	4.28%
-kvdb-dbnode1	63.44%	67.35MiB / 512MiB	13.15%
-kvdb-controller	3.45%	8.672MiB / 256MiB	3.39%
-baghboonvoiceagent-app-1	0.23%	50.21MiB / 7.46GiB	0.66%
-baghboonvoiceagent-caddy-1	0.03%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:23Z
+kv-db-client-run-9abc7dfbfc77	40.77%	9.211MiB / 256MiB	3.60%
+kvdb-dbnode4	44.32%	20.39MiB / 512MiB	3.98%
+kvdb-dbnode3	32.41%	19.69MiB / 512MiB	3.85%
+kvdb-dbnode2	64.06%	59.55MiB / 512MiB	11.63%
+kvdb-dbnode1	55.53%	61.92MiB / 512MiB	12.09%
+kvdb-loadbalancer	99.93%	10.63MiB / 256MiB	4.15%
+kvdb-controller	3.60%	7.996MiB / 256MiB	3.12%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.13%	162.3MiB / 7.462GiB	2.12%
+datanode1	0.46%	440.9MiB / 7.462GiB	5.77%
+datanode2	0.48%	456MiB / 7.462GiB	5.97%
+namenode2	0.53%	606.1MiB / 7.462GiB	7.93%
+namenode1	1.47%	595.8MiB / 7.462GiB	7.80%
+zookeeper	0.19%	133.5MiB / 7.462GiB	1.75%
+cf-chatbot-postgres-1	0.00%	37.08MiB / 7.462GiB	0.49%
+cf-chatbot-redis-1	5.71%	16.61MiB / 7.462GiB	0.22%
 
-2026-08-19T07:06:49Z
-kv-db-client-run-d74fe8c8e42f	41.81%	9.766MiB / 256MiB	3.81%
-kvdb-dbnode4	38.83%	21.59MiB / 512MiB	4.22%
-kvdb-dbnode3	33.00%	21.02MiB / 512MiB	4.11%
-kvdb-dbnode2	62.05%	62.92MiB / 512MiB	12.29%
-kvdb-loadbalancer	100.90%	11.09MiB / 256MiB	4.33%
-kvdb-dbnode1	56.57%	67.94MiB / 512MiB	13.27%
-kvdb-controller	2.67%	8.207MiB / 256MiB	3.21%
-baghboonvoiceagent-app-1	0.89%	50.21MiB / 7.46GiB	0.66%
-baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:28Z
+kv-db-client-run-9abc7dfbfc77	42.37%	9.633MiB / 256MiB	3.76%
+kvdb-dbnode4	49.87%	21.3MiB / 512MiB	4.16%
+kvdb-dbnode3	44.18%	20.7MiB / 512MiB	4.04%
+kvdb-dbnode2	75.40%	60.18MiB / 512MiB	11.75%
+kvdb-dbnode1	75.64%	61.09MiB / 512MiB	11.93%
+kvdb-loadbalancer	104.87%	11.67MiB / 256MiB	4.56%
+kvdb-controller	5.33%	8.043MiB / 256MiB	3.14%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.20%	162.3MiB / 7.462GiB	2.12%
+datanode1	0.84%	440.9MiB / 7.462GiB	5.77%
+datanode2	0.43%	456MiB / 7.462GiB	5.97%
+namenode2	0.47%	605.6MiB / 7.462GiB	7.93%
+namenode1	0.56%	595.3MiB / 7.462GiB	7.79%
+zookeeper	0.28%	133.5MiB / 7.462GiB	1.75%
+cf-chatbot-postgres-1	0.00%	37.08MiB / 7.462GiB	0.49%
+cf-chatbot-redis-1	0.57%	16.61MiB / 7.462GiB	0.22%
 
-2026-08-19T07:06:54Z
-kv-db-client-run-d74fe8c8e42f	39.95%	9.738MiB / 256MiB	3.80%
-kvdb-dbnode4	40.50%	21.98MiB / 512MiB	4.29%
-kvdb-dbnode3	43.37%	21.48MiB / 512MiB	4.19%
-kvdb-dbnode2	63.91%	62.65MiB / 512MiB	12.24%
-kvdb-loadbalancer	105.44%	11.31MiB / 256MiB	4.42%
-kvdb-dbnode1	61.21%	68.11MiB / 512MiB	13.30%
-kvdb-controller	3.89%	8.277MiB / 256MiB	3.23%
-baghboonvoiceagent-app-1	0.19%	50.21MiB / 7.46GiB	0.66%
-baghboonvoiceagent-caddy-1	0.02%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:33Z
+kv-db-client-run-9abc7dfbfc77	41.10%	9.18MiB / 256MiB	3.59%
+kvdb-dbnode4	43.28%	22.36MiB / 512MiB	4.37%
+kvdb-dbnode3	37.12%	21.16MiB / 512MiB	4.13%
+kvdb-dbnode2	65.60%	61.3MiB / 512MiB	11.97%
+kvdb-dbnode1	58.89%	62.54MiB / 512MiB	12.21%
+kvdb-loadbalancer	102.44%	10.61MiB / 256MiB	4.14%
+kvdb-controller	4.01%	8.59MiB / 256MiB	3.36%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.18%	162.3MiB / 7.462GiB	2.12%
+datanode1	0.34%	440.9MiB / 7.462GiB	5.77%
+datanode2	0.20%	456MiB / 7.462GiB	5.97%
+namenode2	1.43%	605.4MiB / 7.462GiB	7.92%
+namenode1	0.38%	595.3MiB / 7.462GiB	7.79%
+zookeeper	1.30%	133.5MiB / 7.462GiB	1.75%
+cf-chatbot-postgres-1	0.00%	37.08MiB / 7.462GiB	0.49%
+cf-chatbot-redis-1	0.79%	16.61MiB / 7.462GiB	0.22%
 
-2026-08-19T07:06:58Z
-kvdb-dbnode4	34.28%	20.02MiB / 512MiB	3.91%
-kvdb-dbnode3	20.82%	19.93MiB / 512MiB	3.89%
-kvdb-dbnode2	36.75%	62.89MiB / 512MiB	12.28%
-kvdb-loadbalancer	93.71%	9.816MiB / 256MiB	3.83%
-kvdb-dbnode1	32.96%	66.37MiB / 512MiB	12.96%
-kvdb-controller	2.36%	7.625MiB / 256MiB	2.98%
-baghboonvoiceagent-app-1	0.19%	50.21MiB / 7.46GiB	0.66%
-baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:37Z
+kvdb-dbnode4	0.03%	20MiB / 512MiB	3.91%
+kvdb-dbnode3	0.04%	19.98MiB / 512MiB	3.90%
+kvdb-dbnode2	0.03%	60.38MiB / 512MiB	11.79%
+kvdb-dbnode1	0.04%	60.72MiB / 512MiB	11.86%
+kvdb-loadbalancer	0.01%	9.133MiB / 256MiB	3.57%
+kvdb-controller	0.09%	8.355MiB / 256MiB	3.26%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.11%	162.3MiB / 7.462GiB	2.12%
+datanode1	0.24%	441.4MiB / 7.462GiB	5.78%
+datanode2	0.34%	456.5MiB / 7.462GiB	5.97%
+namenode2	0.56%	606.7MiB / 7.462GiB	7.94%
+namenode1	0.37%	596.3MiB / 7.462GiB	7.80%
+zookeeper	0.12%	133.5MiB / 7.462GiB	1.75%
+cf-chatbot-postgres-1	0.00%	37.3MiB / 7.462GiB	0.49%
+cf-chatbot-redis-1	0.45%	16.61MiB / 7.462GiB	0.22%
 
-2026-08-19T07:07:03Z
-kvdb-dbnode4	0.05%	20.01MiB / 512MiB	3.91%
-kvdb-dbnode3	0.02%	20.08MiB / 512MiB	3.92%
-kvdb-dbnode2	0.05%	63.39MiB / 512MiB	12.38%
-kvdb-loadbalancer	0.00%	9.691MiB / 256MiB	3.79%
-kvdb-dbnode1	0.07%	67.15MiB / 512MiB	13.11%
-kvdb-controller	0.17%	8.91MiB / 256MiB	3.48%
-baghboonvoiceagent-app-1	0.32%	50.21MiB / 7.46GiB	0.66%
-baghboonvoiceagent-caddy-1	0.03%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:42Z
+kvdb-dbnode4	0.00%	19.88MiB / 512MiB	3.88%
+kvdb-dbnode3	3.42%	20.73MiB / 512MiB	4.05%
+kvdb-dbnode2	0.00%	60.32MiB / 512MiB	11.78%
+kvdb-dbnode1	0.00%	60.28MiB / 512MiB	11.77%
+kvdb-loadbalancer	0.00%	9.918MiB / 256MiB	3.87%
+kvdb-controller	0.00%	7.602MiB / 256MiB	2.97%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.09%	162.3MiB / 7.462GiB	2.12%
+datanode1	0.31%	440.9MiB / 7.462GiB	5.77%
+datanode2	0.20%	456.3MiB / 7.462GiB	5.97%
+namenode2	0.48%	606.9MiB / 7.462GiB	7.94%
+namenode1	0.39%	596MiB / 7.462GiB	7.80%
+zookeeper	0.31%	134MiB / 7.462GiB	1.75%
+cf-chatbot-postgres-1	7.82%	38.32MiB / 7.462GiB	0.50%
+cf-chatbot-redis-1	0.36%	17.34MiB / 7.462GiB	0.23%
 
-2026-08-19T07:07:08Z
-kvdb-dbnode4	0.00%	20.73MiB / 512MiB	4.05%
-kvdb-dbnode3	0.07%	20.45MiB / 512MiB	3.99%
-kvdb-dbnode2	0.12%	63.21MiB / 512MiB	12.35%
-kvdb-loadbalancer	0.00%	10.81MiB / 256MiB	4.22%
-kvdb-dbnode1	0.13%	66.84MiB / 512MiB	13.06%
-kvdb-controller	0.39%	9.125MiB / 256MiB	3.56%
-baghboonvoiceagent-app-1	0.29%	50.21MiB / 7.46GiB	0.66%
-baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:47Z
+kvdb-dbnode4	0.01%	19.83MiB / 512MiB	3.87%
+kvdb-dbnode3	0.00%	19.81MiB / 512MiB	3.87%
+kvdb-dbnode2	0.00%	59.95MiB / 512MiB	11.71%
+kvdb-dbnode1	0.06%	60.46MiB / 512MiB	11.81%
+kvdb-loadbalancer	0.03%	9.387MiB / 256MiB	3.67%
+kvdb-controller	2.47%	8.758MiB / 256MiB	3.42%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.10%	162.3MiB / 7.462GiB	2.12%
+datanode1	0.26%	441.4MiB / 7.462GiB	5.78%
+datanode2	1.34%	456.8MiB / 7.462GiB	5.98%
+namenode2	0.32%	606.6MiB / 7.462GiB	7.94%
+namenode1	0.47%	597MiB / 7.462GiB	7.81%
+zookeeper	0.09%	133.7MiB / 7.462GiB	1.75%
+cf-chatbot-postgres-1	5.85%	38.43MiB / 7.462GiB	0.50%
+cf-chatbot-redis-1	0.34%	16.96MiB / 7.462GiB	0.22%
 
-2026-08-19T07:07:12Z
-kvdb-dbnode4	0.07%	20.17MiB / 512MiB	3.94%
-kvdb-dbnode3	0.00%	20.07MiB / 512MiB	3.92%
-kvdb-dbnode2	7.01%	63.21MiB / 512MiB	12.35%
-kvdb-loadbalancer	0.00%	10.11MiB / 256MiB	3.95%
-kvdb-dbnode1	0.00%	66.57MiB / 512MiB	13.00%
-kvdb-controller	0.22%	8.934MiB / 256MiB	3.49%
-baghboonvoiceagent-app-1	0.30%	51.39MiB / 7.46GiB	0.67%
-baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:51Z
+kvdb-dbnode4	0.00%	19.79MiB / 512MiB	3.86%
+kvdb-dbnode3	0.00%	19.5MiB / 512MiB	3.81%
+kvdb-dbnode2	0.00%	60.36MiB / 512MiB	11.79%
+kvdb-dbnode1	0.00%	60.39MiB / 512MiB	11.80%
+kvdb-loadbalancer	2.65%	10.41MiB / 256MiB	4.07%
+kvdb-controller	0.02%	7.582MiB / 256MiB	2.96%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.09%	162.3MiB / 7.462GiB	2.12%
+datanode1	0.26%	441.5MiB / 7.462GiB	5.78%
+datanode2	0.22%	456.7MiB / 7.462GiB	5.98%
+namenode2	0.40%	607.4MiB / 7.462GiB	7.95%
+namenode1	0.38%	596.3MiB / 7.462GiB	7.80%
+zookeeper	0.12%	133.5MiB / 7.462GiB	1.75%
+cf-chatbot-postgres-1	0.00%	37.08MiB / 7.462GiB	0.49%
+cf-chatbot-redis-1	0.35%	16.62MiB / 7.462GiB	0.22%
 
-2026-08-19T07:07:17Z
-kvdb-dbnode4	0.00%	20.28MiB / 512MiB	3.96%
-kvdb-dbnode3	0.00%	20.55MiB / 512MiB	4.01%
-kvdb-dbnode2	0.00%	63.09MiB / 512MiB	12.32%
-kvdb-loadbalancer	0.04%	10.48MiB / 256MiB	4.09%
-kvdb-dbnode1	0.00%	66.3MiB / 512MiB	12.95%
-kvdb-controller	0.00%	8.68MiB / 256MiB	3.39%
-baghboonvoiceagent-app-1	0.40%	51.32MiB / 7.46GiB	0.67%
-baghboonvoiceagent-caddy-1	0.00%	13.12MiB / 7.46GiB	0.17%
+2026-10-22T20:31:56Z
+kvdb-dbnode4	0.00%	20.47MiB / 512MiB	4.00%
+kvdb-dbnode3	0.00%	19.67MiB / 512MiB	3.84%
+kvdb-dbnode2	0.00%	59.73MiB / 512MiB	11.67%
+kvdb-dbnode1	0.00%	60.3MiB / 512MiB	11.78%
+kvdb-loadbalancer	0.00%	9.652MiB / 256MiB	3.77%
+kvdb-controller	0.02%	8.086MiB / 256MiB	3.16%
+spark	0.00%	54.91MiB / 7.462GiB	0.72%
+journalnode	0.86%	163.3MiB / 7.462GiB	2.14%
+datanode1	0.36%	441.4MiB / 7.462GiB	5.78%
+datanode2	0.27%	456MiB / 7.462GiB	5.97%
+namenode2	0.35%	606.9MiB / 7.462GiB	7.94%
+namenode1	0.50%	596.5MiB / 7.462GiB	7.81%
+zookeeper	0.25%	134.2MiB / 7.462GiB	1.76%
+cf-chatbot-postgres-1	0.00%	37.11MiB / 7.462GiB	0.49%
+cf-chatbot-redis-1	0.37%	17.19MiB / 7.462GiB	0.22%
 

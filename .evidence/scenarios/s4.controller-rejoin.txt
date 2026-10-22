@@ -1,6 +1,6 @@
-2026/08/19 07:12:33 [rejoin] node 1 re-registered; it holds no data, moving its partitions to replicas
-2026/08/19 07:12:33 [rejoin] node 1: 6 partitions promoted away, 14 reseeded, 0 unrecoverable
-2026/08/19 07:12:54 [rejoin] node 2 re-registered; it holds no data, moving its partitions to replicas
-2026/08/19 07:12:54 [rejoin] node 2: 5 partitions promoted away, 13 reseeded, 0 unrecoverable
-2026/08/19 07:13:16 [rejoin] node 3 re-registered; it holds no data, moving its partitions to replicas
-2026/08/19 07:13:16 [rejoin] node 3: 5 partitions promoted away, 5 reseeded, 0 unrecoverable
+2026/10/22 20:33:57 [rejoin] node 1 re-registered; it holds no data, moving its partitions to replicas
+2026/10/22 20:33:57 [rejoin] node 1: 6 partitions promoted away, 15 reseeded, 0 unrecoverable
+2026/10/22 20:34:15 [rejoin] node 3 re-registered; it holds no data, moving its partitions to replicas
+2026/10/22 20:34:15 [rejoin] node 3: 5 partitions promoted away, 5 reseeded, 0 unrecoverable
+2026/10/22 20:34:33 [rejoin] node 2 re-registered; it holds no data, moving its partitions to replicas
+2026/10/22 20:34:33 [rejoin] node 2: 5 partitions promoted away, 11 reseeded, 0 unrecoverable

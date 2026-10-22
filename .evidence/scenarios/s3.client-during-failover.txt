@@ -1,19 +1,20 @@
 COMMAND: docker compose --profile demo run --rm --no-deps client -addr http://loadbalancer:8080 -duration 40s -concurrency 8 -keyspace 2000 -read 0.5
-STARTED: 2026-08-19T07:11:06Z
+STARTED: 2026-10-22T20:32:26Z
 
- Container kv-db-client-run-677b3d9654f3 Creating 
- Container kv-db-client-run-677b3d9654f3 Created 
-progress: 1106 ops (1105 ops/s)progress: 2307 ops (1153 ops/s)progress: 3540 ops (1180 ops/s)progress: 4477 ops (1119 ops/s)progress: 5699 ops (1140 ops/s)progress: 6842 ops (1140 ops/s)progress: 8048 ops (1150 ops/s)progress: 9190 ops (1149 ops/s)progress: 10209 ops (1134 ops/s)progress: 11246 ops (1124 ops/s)progress: 12299 ops (1118 ops/s)progress: 13242 ops (1103 ops/s)progress: 13242 ops (1019 ops/s)progress: 13242 ops (946 ops/s)progress: 13242 ops (883 ops/s)progress: 13242 ops (828 ops/s)progress: 13265 ops (780 ops/s)progress: 13265 ops (737 ops/s)progress: 13265 ops (698 ops/s)progress: 13265 ops (663 ops/s)progress: 13265 ops (632 ops/s)progress: 13284 ops (604 ops/s)progress: 13284 ops (578 ops/s)progress: 13284 ops (553 ops/s)progress: 13284 ops (531 ops/s)progress: 13284 ops (511 ops/s)progress: 13409 ops (497 ops/s)progress: 14656 ops (523 ops/s)progress: 15874 ops (547 ops/s)progress: 17070 ops (569 ops/s)progress: 18230 ops (588 ops/s)progress: 19467 ops (608 ops/s)progress: 20889 ops (633 ops/s)progress: 22083 ops (649 ops/s)progress: 23397 ops (668 ops/s)progress: 24582 ops (683 ops/s)progress: 25757 ops (696 ops/s)progress: 27010 ops (711 ops/s)progress: 28065 ops (720 ops/s)progress: 29292 ops (732 ops/s)
-addr: http://loadbalancer:8080
+ Container kv-db-client-run-1c19045ecf58 Creating 
+ Container kv-db-client-run-1c19045ecf58 Created 
+progress: 1231 ops (1231 ops/s)progress: 2554 ops (1277 ops/s)progress: 3932 ops (1311 ops/s)progress: 5251 ops (1313 ops/s)progress: 6643 ops (1328 ops/s)progress: 7974 ops (1329 ops/s)progress: 9270 ops (1324 ops/s)progress: 10613 ops (1327 ops/s)progress: 11807 ops (1312 ops/s)progress: 13054 ops (1305 ops/s)progress: 14475 ops (1316 ops/s)progress: 15787 ops (1315 ops/s)progress: 15931 ops (1225 ops/s)progress: 15931 ops (1138 ops/s)progress: 15931 ops (1062 ops/s)progress: 15931 ops (995 ops/s)progress: 15931 ops (937 ops/s)progress: 15941 ops (886 ops/s)progress: 15941 ops (839 ops/s)progress: 15941 ops (797 ops/s)progress: 15941 ops (759 ops/s)progress: 15941 ops (725 ops/s)progress: 15976 ops (695 ops/s)progress: 15976 ops (666 ops/s)progress: 15976 ops (639 ops/s)progress: 15976 ops (614 ops/s)progress: 15976 ops (592 ops/s)progress: 16825 ops (601 ops/s)progress: 17557 ops (605 ops/s)progress: 18278 ops (609 ops/s)progress: 19087 ops (616 ops/s)progress: 20332 ops (635 ops/s)progress: 21424 ops (649 ops/s)progress: 22311 ops (656 ops/s)progress: 23374 ops (668 ops/s)progress: 24295 ops (675 ops/s)progress: 25337 ops (685 ops/s)progress: 26135 ops (688 ops/s)progress: 27077 ops (694 ops/s)progress: 28242 ops (706 ops/s)addr: http://loadbalancer:8080
 mode: duration=40s concurrency=8
 mix: read=0.50 delete=0.00 set=0.50
 keys: 2000 value_bytes: 128
-elapsed: 40.029880482s
-throughput: 732.0 ops/s (total=29300)
-latency: avg=10.918353ms min=433.785µs max=5.001886616s
-get: ok=12716 miss=1994 err=11
-set: ok=14566 err=13
+elapsed: 40.062724635s
+throughput: 705.1 ops/s (total=28250)
+latency: avg=11.333118ms min=545.96µs max=5.001395223s p50~=5ms p99~=100ms
+retries: 24 (client backoff retries beyond first attempt)
+get: ok=12121 miss=1890 err=17
+set: ok=14215 err=7
 delete: ok=0 err=0
 errors: 24  aborted_at_shutdown: 0
+
 
 EXIT CODE: 0

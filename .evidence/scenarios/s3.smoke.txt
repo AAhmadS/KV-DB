@@ -2,7 +2,7 @@
 $ curl -X PUT http://localhost:8080/kv/smoke-key -d 'hello'
 HTTP/1.1 200 OK
 $ curl http://localhost:8080/kv/smoke-key
-{"key":"smoke-key","value":"aGVsbG8=","version":10498}
+{"key":"smoke-key","value":"aGVsbG8=","version":10309}
 
 $ curl -X DELETE http://localhost:8080/kv/smoke-key
 HTTP/1.1 200 OK

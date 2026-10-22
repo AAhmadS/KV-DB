@@ -1,15 +1,16 @@
 COMMAND: docker compose --profile demo run --rm --no-deps client -addr http://loadbalancer:8080 -ops 5000 -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.0
-STARTED: 2026-08-19T07:02:51Z
+STARTED: 2026-10-22T20:27:11Z
 
- Container kv-db-client-run-2558b5e6a36b Creating 
- Container kv-db-client-run-2558b5e6a36b Created 
+ Container kv-db-client-run-d9bbc1ffde8d Creating 
+ Container kv-db-client-run-d9bbc1ffde8d Created 
 addr: http://loadbalancer:8080
 mode: ops=5000 concurrency=16
 mix: read=0.00 delete=0.00 set=1.00
 keys: 5000 value_bytes: 128
-elapsed: 3.900747322s
-throughput: 1281.8 ops/s (total=5000)
-latency: avg=12.465456ms min=336.181µs max=85.737764ms
+elapsed: 4.324287996s
+throughput: 1156.3 ops/s (total=5000)
+latency: avg=13.818781ms min=711.153µs max=87.915385ms p50~=5ms p99~=100ms
+retries: 0 (client backoff retries beyond first attempt)
 get: ok=0 miss=0 err=0
 set: ok=5000 err=0
 delete: ok=0 err=0

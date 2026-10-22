@@ -1,19 +1,20 @@
 COMMAND: docker compose --profile demo run --rm --no-deps client -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
-STARTED: 2026-08-19T07:04:51Z
+STARTED: 2026-10-22T20:29:11Z
 
- Container kv-db-client-run-2c0bafad2175 Creating 
- Container kv-db-client-run-2c0bafad2175 Created 
-progress: 719 ops (718 ops/s)progress: 1468 ops (734 ops/s)progress: 2187 ops (729 ops/s)progress: 2949 ops (737 ops/s)progress: 3749 ops (750 ops/s)progress: 4477 ops (746 ops/s)progress: 5358 ops (765 ops/s)progress: 6050 ops (756 ops/s)progress: 6791 ops (755 ops/s)progress: 7434 ops (743 ops/s)progress: 8225 ops (748 ops/s)progress: 8985 ops (749 ops/s)progress: 9916 ops (763 ops/s)progress: 11021 ops (787 ops/s)progress: 11970 ops (798 ops/s)progress: 13042 ops (815 ops/s)progress: 13982 ops (822 ops/s)progress: 15123 ops (840 ops/s)progress: 16130 ops (849 ops/s)progress: 17244 ops (862 ops/s)addr: http://loadbalancer:8080
+ Container kv-db-client-run-c266d192e55b Creating 
+ Container kv-db-client-run-c266d192e55b Created 
+progress: 1013 ops (1013 ops/s)progress: 1937 ops (968 ops/s)progress: 3028 ops (1009 ops/s)progress: 3813 ops (953 ops/s)progress: 4767 ops (953 ops/s)progress: 5534 ops (922 ops/s)progress: 6314 ops (902 ops/s)progress: 7040 ops (880 ops/s)progress: 7809 ops (868 ops/s)progress: 8488 ops (849 ops/s)progress: 9327 ops (848 ops/s)progress: 10256 ops (855 ops/s)progress: 11146 ops (857 ops/s)progress: 11924 ops (852 ops/s)progress: 12584 ops (839 ops/s)progress: 13497 ops (844 ops/s)progress: 14633 ops (861 ops/s)progress: 15708 ops (873 ops/s)progress: 16428 ops (865 ops/s)progress: 17615 ops (881 ops/s)
+addr: http://loadbalancer:8080
 mode: duration=20s concurrency=16
 mix: read=0.50 delete=0.00 set=0.50
 keys: 5000 value_bytes: 128
-elapsed: 20.00334138s
-throughput: 862.7 ops/s (total=17256)
-latency: avg=18.52921ms min=597.067µs max=147.279045ms
-get: ok=8505 miss=0 err=0
-set: ok=8751 err=0
+elapsed: 20.028124982s
+throughput: 880.3 ops/s (total=17631)
+latency: avg=18.159155ms min=572.653µs max=124.445157ms p50~=10ms p99~=100ms
+retries: 0 (client backoff retries beyond first attempt)
+get: ok=8620 miss=0 err=0
+set: ok=9011 err=0
 delete: ok=0 err=0
 errors: 0  aborted_at_shutdown: 0
-
 
 EXIT CODE: 0

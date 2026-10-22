@@ -1,14 +1,15 @@
- Container kv-db-client-run-d74fe8c8e42f Creating 
- Container kv-db-client-run-d74fe8c8e42f Created 
-progress: 1026 ops (1025 ops/s)progress: 2031 ops (1015 ops/s)progress: 3074 ops (1024 ops/s)progress: 4162 ops (1040 ops/s)progress: 5015 ops (1003 ops/s)progress: 6129 ops (1021 ops/s)progress: 6954 ops (993 ops/s)progress: 7905 ops (988 ops/s)progress: 8884 ops (987 ops/s)progress: 9857 ops (986 ops/s)progress: 10854 ops (987 ops/s)progress: 12030 ops (1002 ops/s)progress: 13093 ops (1007 ops/s)progress: 14159 ops (1011 ops/s)progress: 15199 ops (1013 ops/s)progress: 16321 ops (1020 ops/s)progress: 17289 ops (1017 ops/s)progress: 18374 ops (1021 ops/s)progress: 19405 ops (1021 ops/s)progress: 20518 ops (1026 ops/s)progress: 21464 ops (1022 ops/s)progress: 22424 ops (1019 ops/s)progress: 23433 ops (1019 ops/s)progress: 24438 ops (1018 ops/s)progress: 25487 ops (1019 ops/s)progress: 26417 ops (1016 ops/s)progress: 27612 ops (1023 ops/s)progress: 28695 ops (1025 ops/s)progress: 29635 ops (1022 ops/s)progress: 30689 ops (1023 ops/s)
+ Container kv-db-client-run-9abc7dfbfc77 Creating 
+ Container kv-db-client-run-9abc7dfbfc77 Created 
+progress: 836 ops (835 ops/s)progress: 2075 ops (1037 ops/s)progress: 3342 ops (1114 ops/s)progress: 4389 ops (1097 ops/s)progress: 5418 ops (1084 ops/s)progress: 6606 ops (1101 ops/s)progress: 7797 ops (1114 ops/s)progress: 9145 ops (1143 ops/s)progress: 10219 ops (1135 ops/s)progress: 10892 ops (1089 ops/s)progress: 11924 ops (1084 ops/s)progress: 12800 ops (1067 ops/s)progress: 13673 ops (1052 ops/s)progress: 14764 ops (1055 ops/s)progress: 15573 ops (1038 ops/s)progress: 16566 ops (1035 ops/s)progress: 17678 ops (1040 ops/s)progress: 18778 ops (1043 ops/s)progress: 20092 ops (1057 ops/s)progress: 21159 ops (1058 ops/s)progress: 22308 ops (1062 ops/s)progress: 23138 ops (1052 ops/s)progress: 24300 ops (1057 ops/s)progress: 25419 ops (1059 ops/s)progress: 26475 ops (1059 ops/s)progress: 27891 ops (1073 ops/s)progress: 29050 ops (1076 ops/s)progress: 30346 ops (1084 ops/s)progress: 31394 ops (1083 ops/s)progress: 32484 ops (1083 ops/s)
 addr: http://loadbalancer:8080
 mode: duration=30s concurrency=16
 mix: read=0.50 delete=0.00 set=0.50
 keys: 5000 value_bytes: 128
-elapsed: 30.00858752s
-throughput: 1023.2 ops/s (total=30705)
-latency: avg=15.617963ms min=494.271µs max=96.882217ms
-get: ok=15297 miss=0 err=0
-set: ok=15408 err=0
+elapsed: 30.05122702s
+throughput: 1081.5 ops/s (total=32500)
+latency: avg=14.777411ms min=475.079µs max=107.430836ms p50~=10ms p99~=100ms
+retries: 0 (client backoff retries beyond first attempt)
+get: ok=16166 miss=0 err=0
+set: ok=16334 err=0
 delete: ok=0 err=0
 errors: 0  aborted_at_shutdown: 0

@@ -1,17 +1,18 @@
 COMMAND: docker compose --profile demo run --rm --no-deps client -addr http://loadbalancer:8080 -duration 20s -concurrency 16 -keyspace 5000 -value-bytes 128 -read 0.5
-STARTED: 2026-08-19T07:04:29Z
+STARTED: 2026-10-22T20:28:50Z
 
- Container kv-db-client-run-39617c9b5701 Creating 
- Container kv-db-client-run-39617c9b5701 Created 
-progress: 1144 ops (1143 ops/s)progress: 2224 ops (1112 ops/s)progress: 3100 ops (1033 ops/s)progress: 4099 ops (1025 ops/s)progress: 5351 ops (1070 ops/s)progress: 6320 ops (1053 ops/s)progress: 7540 ops (1077 ops/s)progress: 8592 ops (1074 ops/s)progress: 9770 ops (1086 ops/s)progress: 10991 ops (1099 ops/s)progress: 12125 ops (1102 ops/s)progress: 13171 ops (1098 ops/s)progress: 14385 ops (1107 ops/s)progress: 15599 ops (1114 ops/s)progress: 16819 ops (1121 ops/s)progress: 18020 ops (1126 ops/s)progress: 19057 ops (1121 ops/s)progress: 20233 ops (1124 ops/s)progress: 21412 ops (1127 ops/s)progress: 22384 ops (1119 ops/s)addr: http://loadbalancer:8080
+ Container kv-db-client-run-1dbd4cf947d9 Creating 
+ Container kv-db-client-run-1dbd4cf947d9 Created 
+progress: 1189 ops (1189 ops/s)progress: 2425 ops (1212 ops/s)progress: 3664 ops (1221 ops/s)progress: 4863 ops (1215 ops/s)progress: 5898 ops (1179 ops/s)progress: 7066 ops (1178 ops/s)progress: 8165 ops (1166 ops/s)progress: 9155 ops (1144 ops/s)progress: 10088 ops (1121 ops/s)progress: 11106 ops (1110 ops/s)progress: 11954 ops (1087 ops/s)progress: 12958 ops (1080 ops/s)progress: 13855 ops (1066 ops/s)progress: 14694 ops (1050 ops/s)progress: 15571 ops (1038 ops/s)progress: 16416 ops (1026 ops/s)progress: 17316 ops (1019 ops/s)progress: 17993 ops (999 ops/s)progress: 18840 ops (992 ops/s)progress: 19899 ops (995 ops/s)addr: http://loadbalancer:8080
 mode: duration=20s concurrency=16
 mix: read=0.50 delete=0.00 set=0.50
 keys: 5000 value_bytes: 128
-elapsed: 20.076763204s
-throughput: 1115.7 ops/s (total=22399)
-latency: avg=14.31863ms min=535.659µs max=99.556357ms
-get: ok=11153 miss=0 err=0
-set: ok=11246 err=0
+elapsed: 20.006800745s
+throughput: 995.4 ops/s (total=19914)
+latency: avg=16.058465ms min=508.342µs max=112.433216ms p50~=10ms p99~=100ms
+retries: 0 (client backoff retries beyond first attempt)
+get: ok=10083 miss=0 err=0
+set: ok=9831 err=0
 delete: ok=0 err=0
 errors: 0  aborted_at_shutdown: 0
 
