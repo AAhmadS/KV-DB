@@ -25,3 +25,12 @@ Thumbs.db
 
 # Local Claude Code settings (machine-specific permissions)
 .claude/settings.local.json
+
+# Local-only homework reference files. These exist in the working tree but
+# must NEVER be committed or pushed: they were purged from git history and
+# live here for offline study only.
+/AGENT_TASK.md
+/ARCHITECTURE.md
+/DEFENSE.md
+/STATUS.md
+/docs/
